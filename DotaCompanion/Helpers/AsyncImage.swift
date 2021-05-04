@@ -1,24 +1,23 @@
 import SwiftUI
 import Combine
 
-struct AsyncImage<M: View>: View {
+struct AsyncImage: View {
   @State
   private var image: UIImage?
   private let source: AnyPublisher<UIImage, Never>
-  var modifier: (Image) -> M
-  
+
   init(
     source: AnyPublisher<UIImage, Never>,
-    placeholder: UIImage?,
-    modifier: @escaping (Image) -> M
+    placeholder: UIImage?
   ) {
     self.source = source
     self._image = State(initialValue: placeholder)
-    self.modifier = modifier
   }
   
   var body: some View {
-    return modifier(Image(uiImage: image ?? UIImage()))
+    return Image(uiImage: image ?? UIImage())
+      .resizable()
+      .clipped()
       .bind(source, to: $image)
   }
 }
@@ -36,17 +35,22 @@ extension View {
 
 final class ImageFetcher {
   private let cache = NSCache<NSURL, UIImage>()
+  private let repo = CacheFileRepository(directory: "com.dota2.companion.ImageFetcher")
   
   func image(for url: URL) -> AnyPublisher<UIImage, Never> {
     return Deferred { () -> AnyPublisher<UIImage, Never> in
       if let image = self.cache.object(forKey: url as NSURL) {
-        return Result.Publisher(image)
-          .eraseToAnyPublisher()
+        return Result.Publisher(image).eraseToAnyPublisher()
+      } else if let data = try? self.repo.loadFile(path: url.path), let image = UIImage(data: data) {
+        self.cache.setObject(image, forKey: url as NSURL)
+        return Result.Publisher(image).eraseToAnyPublisher()
       }
-      
       return URLSession.shared
         .dataTaskPublisher(for: url)
         .map(\.data)
+        .handleEvents(receiveOutput: { data in
+          try? self.repo.persist(data: data, path: url.path)
+        })
         .compactMap(UIImage.init(data:))
         .receive(on: DispatchQueue.main)
         .handleEvents(receiveOutput: { image in

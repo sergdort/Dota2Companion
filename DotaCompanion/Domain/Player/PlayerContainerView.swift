@@ -3,36 +3,25 @@ import SwiftUI
 
 public struct PlayerContainerView: View {
   @ObservedObject
-  var viewModel = PlayerViewModel()
+  var model = PlayerViewModel()
   @Environment(\.imageFetcher)
   var imageFetcher
 
   public var body: some View {
-    Group {
-      if let player = viewModel.player, let rankIcon = viewModel.rankIcon {
-        PlayerView(
-          image: (
-            imageFetcher.image(for: player.profile.avatarmedium),
-            nil
-          ),
-          rankIcon: rankIcon,
-          name: player.profile.personaname,
-          wins: 1527,
-          loses: 1764
-        )
-      } else {
-        PlayerView(
-          image: (Empty().eraseToAnyPublisher(), nil),
-          rankIcon: nil,
-          name: "Default Behaviour",
-          wins: 1527,
-          loses: 1764
-        )
-        .padding([.leading, .trailing], 8)
-      }
-    }
-    .redacted(reason: viewModel.player == nil ? .placeholder : [])
-    .onAppear(perform: viewModel.fetch)
+    PlayerView(
+      image: (
+        model.player.map {
+          imageFetcher.image(for: $0.profile.avatarmedium)
+        } ?? Empty().eraseToAnyPublisher(),
+        nil
+      ),
+      rankIcon: model.rankIcon,
+      name: model.player?.profile.personaname ?? "Placeholder",
+      wins: 1527,
+      loses: 1764
+    )
+    .redacted(reason: model.player == nil ? .placeholder : [])
+    .onAppear(perform: model.fetch)
   }
 }
 

@@ -24,9 +24,7 @@ public struct PlayerView: View {
       AsyncImage(
         source: image.async,
         placeholder: image.placeholder
-      ) {
-        $0.resizable()
-      }
+      )
       .frame(width: 90, height: 90)
       .clipShape(Circle())
       HStack {
@@ -56,29 +54,24 @@ struct PlayerRankView: View {
   var imageFetcher
 
   var body: some View {
-    if let rankIcon = rankIcon {
-      VStack {
-        AsyncImage(
-          source: imageFetcher.image(for: rankIcon.medal),
-          placeholder: rankPlaceholder
-        ) {
-          $0.resizable()
-        }
-      }
-      .frame(width: 50, height: 50)
-      .overlay {
-        if let start = rankIcon.stars {
+    ZStack {
+      Color.clear
+      if let rankIcon = rankIcon {
+        ZStack {
           AsyncImage(
-            source: imageFetcher.image(for: start),
-            placeholder: starsPlaceholder
-          ) {
-            $0.resizable()
+            source: imageFetcher.image(for: rankIcon.medal),
+            placeholder: rankPlaceholder
+          )
+          if let start = rankIcon.stars {
+            AsyncImage(
+              source: imageFetcher.image(for: start),
+              placeholder: starsPlaceholder
+            )
           }
         }
       }
-    } else {
-      Color.clear.frame(width: 50, height: 50)
     }
+    .frame(width: 50, height: 50)
   }
 }
 
