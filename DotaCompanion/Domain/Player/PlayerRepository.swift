@@ -1,11 +1,27 @@
 import Combine
 import Foundation
 
+extension URLSession {
+  static let withCache: URLSession = {
+    let cachesURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+    let diskCacheURL = cachesURL.appendingPathComponent("DownloadCache")
+    let cache = URLCache(memoryCapacity: 10_000_000, diskCapacity: 1_000_000_000, directory: diskCacheURL)
+    let config = URLSessionConfiguration.default
+    config.urlCache = cache
+    return URLSession(configuration: config)
+  }()
+}
+
 final class PlayerRepository {
   private let playerId = CurrentUser.currentUserId
   private let baseURL = URL(string: "https://api.opendota.com/api")!
   private let appBaseURL = URL(string: "https://www.opendota.com")!
-  private let session = URLSession.shared
+  private let session = URLSession.withCache
+  private let playerCache: FileCache
+
+  init() {
+    self.playerCache = FileCache(name: "PlayerRepository")
+  }
 
   func getPlayer() -> AnyPublisher<Player, CoreError> {
     let resource = Resource(
@@ -18,6 +34,7 @@ final class PlayerRepository {
 
     return session.dataTaskPublisher(for: request)
       .map(\.data)
+      .prependAndStore(from: playerCache, path: resource.path + ".json")
       .decode(type: Player.self, decoder: decoder)
       .mapError(CoreError.network)
       .eraseToAnyPublisher()
@@ -34,6 +51,7 @@ final class PlayerRepository {
 
     return session.dataTaskPublisher(for: request)
       .map(\.data)
+      .prependAndStore(from: playerCache, path: resource.path + ".json")
       .decode(type: WinsStats.self, decoder: decoder)
       .mapError(CoreError.network)
       .eraseToAnyPublisher()

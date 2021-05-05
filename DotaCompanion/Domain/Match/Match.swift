@@ -1,25 +1,25 @@
 import Foundation
 
-struct Match: Codable {
-  var matchID, playerSlot: Int
-  var radiantWin: Bool
-  var duration, gameMode, lobbyType, heroID: Int
-  var startTime: Int
-  var version: Int?
-  var kills, deaths, assists: Int
-  var skill: Int?
-  var xpPerMin, goldPerMin, heroDamage, towerDamage: Int
-  var heroHealing, lastHits: Int
-  var lane, laneRole: Int?
-  var isRoaming: Bool?
-  var cluster, leaverStatus: Int
-  var partySize: Int?
+public struct Match: Codable {
+  public var matchID, playerSlot: Int
+  public var radiantWin: Bool
+  public var duration, gameMode, lobbyType, heroID: Int
+  public var startTime: Int
+  public var version: Int?
+  public var kills, deaths, assists: Int
+  public var skill: Int?
+  public var xpPerMin, goldPerMin, heroDamage, towerDamage: Int
+  public var heroHealing, lastHits: Int
+  public var lane, laneRole: Int?
+  public var isRoaming: Bool?
+  public var cluster, leaverStatus: Int
+  public var partySize: Int?
 
-  var isRadiant: Bool {
+  public var isRadiant: Bool {
     playerSlot < 128
   }
 
-  init(
+  public init(
     matchID: Int,
     playerSlot: Int,
     radiantWin: Bool,

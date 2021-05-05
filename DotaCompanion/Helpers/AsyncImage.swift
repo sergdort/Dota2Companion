@@ -35,8 +35,8 @@ extension View {
 
 final class ImageFetcher {
   private let cache = NSCache<NSURL, UIImage>()
-  private let repo = CacheFileRepository(directory: "com.dota2.companion.ImageFetcher")
-  
+  private let repo = FileCache(name: "ImageFetcher")
+
   func image(for url: URL) -> AnyPublisher<UIImage, Never> {
     return Deferred { () -> AnyPublisher<UIImage, Never> in
       if let image = self.cache.object(forKey: url as NSURL) {
@@ -45,7 +45,7 @@ final class ImageFetcher {
         self.cache.setObject(image, forKey: url as NSURL)
         return Result.Publisher(image).eraseToAnyPublisher()
       }
-      return URLSession.shared
+      return URLSession.withCache
         .dataTaskPublisher(for: url)
         .map(\.data)
         .handleEvents(receiveOutput: { data in

@@ -1,11 +1,11 @@
 import Foundation
 
-final class CacheFileRepository {
+final class FileCache {
   private let fileManager = FileManager.default
   private let directory: String
 
-  init(directory: String) {
-    self.directory = directory
+  init(name: String) {
+    self.directory = "\(Bundle.main.bundleIdentifier ?? "")/" + (name.hasPrefix("/") ? String(name.dropFirst()) : name)
   }
 
   func loadFile(path: String) throws -> Data {
