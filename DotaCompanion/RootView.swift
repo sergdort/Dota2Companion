@@ -8,5 +8,6 @@ public struct RootView: View {
       PlayerOverview.makeRootView()
       Spacer()
     }
+    .padding()
   }
 }

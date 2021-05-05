@@ -35,6 +35,7 @@ public struct PlayerView: View {
             .foregroundColor(Colors.textMain.color)
           PlayerStatsView(wins: wins, loses: loses)
         }
+        Spacer()
         PlayerRankView(
           rankIcon: rankIcon,
           rankPlaceholder: rankPlaceholder,
