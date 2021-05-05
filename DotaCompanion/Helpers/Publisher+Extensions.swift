@@ -7,4 +7,12 @@ public extension Publisher {
     }
     .eraseToAnyPublisher()
   }
+
+  func replaceError(
+    replace: @escaping (Failure) -> Self.Output
+  ) -> AnyPublisher<Self.Output, Never> {
+    return `catch` { error in
+      Result.Publisher(replace(error))
+    }.eraseToAnyPublisher()
+  }
 }

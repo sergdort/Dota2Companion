@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		251A034B2642015700A1348B /* CombineFeedback in Frameworks */ = {isa = PBXBuildFile; productRef = 251A034A2642015700A1348B /* CombineFeedback */; };
+		251A034D2642015700A1348B /* CombineFeedbackUI in Frameworks */ = {isa = PBXBuildFile; productRef = 251A034C2642015700A1348B /* CombineFeedbackUI */; };
 		258EC6E92640445700AD0024 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6E82640445700AD0024 /* PlayerView.swift */; };
 		258EC6ED26405DD800AD0024 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6EC26405DD800AD0024 /* AsyncImage.swift */; };
 		258EC6EF26405E0800AD0024 /* Publisher+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6EE26405E0800AD0024 /* Publisher+Extensions.swift */; };
@@ -78,6 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				251A034B2642015700A1348B /* CombineFeedback in Frameworks */,
+				251A034D2642015700A1348B /* CombineFeedbackUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +230,8 @@
 			);
 			name = DotaCompanion;
 			packageProductDependencies = (
+				251A034A2642015700A1348B /* CombineFeedback */,
+				251A034C2642015700A1348B /* CombineFeedbackUI */,
 			);
 			productName = DotaCompanion;
 			productReference = 25F86E73263FFA3800546CB2 /* DotaCompanion.app */;
@@ -299,6 +305,7 @@
 			);
 			mainGroup = 25F86E6A263FFA3800546CB2;
 			packageReferences = (
+				251A03492642015700A1348B /* XCRemoteSwiftPackageReference "CombineFeedback" */,
 			);
 			productRefGroup = 25F86E74263FFA3800546CB2 /* Products */;
 			projectDirPath = "";
@@ -679,6 +686,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		251A03492642015700A1348B /* XCRemoteSwiftPackageReference "CombineFeedback" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sergdort/CombineFeedback.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		251A034A2642015700A1348B /* CombineFeedback */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 251A03492642015700A1348B /* XCRemoteSwiftPackageReference "CombineFeedback" */;
+			productName = CombineFeedback;
+		};
+		251A034C2642015700A1348B /* CombineFeedbackUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 251A03492642015700A1348B /* XCRemoteSwiftPackageReference "CombineFeedback" */;
+			productName = CombineFeedbackUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 25F86E6B263FFA3800546CB2 /* Project object */;
 }
