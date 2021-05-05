@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		251A034B2642015700A1348B /* CombineFeedback in Frameworks */ = {isa = PBXBuildFile; productRef = 251A034A2642015700A1348B /* CombineFeedback */; };
 		251A034D2642015700A1348B /* CombineFeedbackUI in Frameworks */ = {isa = PBXBuildFile; productRef = 251A034C2642015700A1348B /* CombineFeedbackUI */; };
+		251A03532643014D00A1348B /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A03522643014D00A1348B /* Match.swift */; };
+		251A035B2643029800A1348B /* MatchesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A035A2643029800A1348B /* MatchesRepository.swift */; };
+		251A0360264302D900A1348B /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A035F264302D900A1348B /* CurrentUser.swift */; };
+		251A036C26432D5E00A1348B /* PlayerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A036B26432D5E00A1348B /* PlayerRepository.swift */; };
 		258EC6E92640445700AD0024 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6E82640445700AD0024 /* PlayerView.swift */; };
 		258EC6ED26405DD800AD0024 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6EC26405DD800AD0024 /* AsyncImage.swift */; };
 		258EC6EF26405E0800AD0024 /* Publisher+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6EE26405E0800AD0024 /* Publisher+Extensions.swift */; };
@@ -48,6 +52,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		251A03522643014D00A1348B /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		251A035A2643029800A1348B /* MatchesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesRepository.swift; sourceTree = "<group>"; };
+		251A035F264302D900A1348B /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		251A036B26432D5E00A1348B /* PlayerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRepository.swift; sourceTree = "<group>"; };
 		258EC6E82640445700AD0024 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		258EC6EC26405DD800AD0024 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		258EC6EE26405E0800AD0024 /* Publisher+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extensions.swift"; sourceTree = "<group>"; };
@@ -102,6 +110,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		251A03512643013700A1348B /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				251A03522643014D00A1348B /* Match.swift */,
+				251A035A2643029800A1348B /* MatchesRepository.swift */,
+			);
+			path = Match;
+			sourceTree = "<group>";
+		};
+		251A0364264302DD00A1348B /* User */ = {
+			isa = PBXGroup;
+			children = (
+				251A035F264302D900A1348B /* CurrentUser.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		258EC6EA26405D3900AD0024 /* Hero */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +220,8 @@
 		25F86EAA263FFD4E00546CB2 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				251A0364264302DD00A1348B /* User */,
+				251A03512643013700A1348B /* Match */,
 				258EC6EA26405D3900AD0024 /* Hero */,
 				25F86EB42640398000546CB2 /* Player */,
 				25F86EAE2640041200546CB2 /* Resource.swift */,
@@ -207,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				25F86EB52640399900546CB2 /* Player.swift */,
+				251A036B26432D5E00A1348B /* PlayerRepository.swift */,
 				258EC6E82640445700AD0024 /* PlayerView.swift */,
 				258EC6F626406C9300AD0024 /* PlayerContainerView.swift */,
 			);
@@ -357,8 +385,12 @@
 				25BC247526418C6700664F72 /* CacheFileRepository.swift in Sources */,
 				258EC6F5264064C000AD0024 /* Theme.swift in Sources */,
 				258EC6F726406C9300AD0024 /* PlayerContainerView.swift in Sources */,
+				251A035B2643029800A1348B /* MatchesRepository.swift in Sources */,
 				25F86E79263FFA3800546CB2 /* SceneDelegate.swift in Sources */,
+				251A03532643014D00A1348B /* Match.swift in Sources */,
+				251A036C26432D5E00A1348B /* PlayerRepository.swift in Sources */,
 				258EC6EF26405E0800AD0024 /* Publisher+Extensions.swift in Sources */,
+				251A0360264302D900A1348B /* CurrentUser.swift in Sources */,
 				25F86EB12640047D00546CB2 /* CoreError.swift in Sources */,
 				25F86EB62640399900546CB2 /* Player.swift in Sources */,
 				25F86EAF2640041200546CB2 /* Resource.swift in Sources */,

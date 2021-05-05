@@ -14,13 +14,24 @@ enum PlayerOverview {
   }
 
   struct State {
-    var player: Player?
-    var rankIcon: RankIcon?
+    var player = Player(
+      rankTier: 0,
+      leaderboardRank: nil,
+      profile: Player.Profile(
+        accountId: 0,
+        personaname: "Placeholder",
+        avatar: URL(string: "https://github.com/")!,
+        avatarmedium: URL(string: "https://github.com/")!,
+        avatarfull: URL(string: "https://github.com/")!
+      )
+    )
+    var rankIcon: RankIcon? = nil
+    var winStats = WinsStats(win: 1000, lose: 1000)
     var isLoading = true
   }
 
   enum Event {
-    case didLoad(Player, RankIcon?)
+    case didLoad(Player, RankIcon?, WinsStats)
     case didFail(CoreError)
   }
 
@@ -40,8 +51,9 @@ enum PlayerOverview {
     ) -> Feedback<State, Event> {
       Feedback(predicate: \.isLoading) { _ in
         repository.getPlayer()
-          .map {
-            Event.didLoad($0, repository.rankImage(for: $0))
+          .zip(repository.winLoses())
+          .map { tuple in
+            Event.didLoad(tuple.0, repository.rankImage(for: tuple.0), tuple.1)
           }
           .replaceError(replace: Event.didFail)
           .receive(on: DispatchQueue.main)
@@ -50,9 +62,10 @@ enum PlayerOverview {
 
     private static func reduce(state: inout State, event: Event) {
       switch event {
-      case .didLoad(let player, let rankIcon):
+      case let .didLoad(player, rankIcon, winStats):
         state.player = player
         state.rankIcon = rankIcon
+        state.winStats = winStats
         state.isLoading = false
       case .didFail:
         state.isLoading = false
@@ -69,15 +82,13 @@ enum PlayerOverview {
     public var body: some View {
       PlayerView(
         image: (
-          context.player.map {
-            imageFetcher.image(for: $0.profile.avatarmedium)
-          } ?? Empty().eraseToAnyPublisher(),
+          imageFetcher.image(for: context.player.profile.avatarmedium),
           nil
         ),
         rankIcon: context.rankIcon,
-        name: context.player?.profile.personaname ?? "Placeholder",
-        wins: 1527,
-        loses: 1764
+        name: context.player.profile.name ?? context.player.profile.personaname,
+        wins: context.winStats.win,
+        loses: context.winStats.lose
       )
       .redacted(reason: context.isLoading ? .placeholder : [])
     }
