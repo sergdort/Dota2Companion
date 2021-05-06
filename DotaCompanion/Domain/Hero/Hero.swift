@@ -50,6 +50,10 @@ struct Hero: Codable {
     case cmEnabled = "cm_enabled"
     case legs
   }
+
+  static func orderedById(lhs: Hero, rhs: Hero) -> Bool {
+    return lhs.id < rhs.id
+  }
 }
 
 enum AttackType: String, Codable {
@@ -76,36 +80,3 @@ enum Role: String, Codable {
 }
 
 typealias Heroes = [String: Hero]
-
-final class HeroRepository {
-  private let url = URL(string: "https://raw.githubusercontent.com/odota/dotaconstants/master/build/heroes.json")!
-  private let session = URLSession.shared
-  private let fileCache = FileCache(name: "HeroRepository")
-
-  func getHeroes() -> AnyPublisher<[Hero], CoreError> {
-    return Deferred { () -> AnyPublisher<[Hero], CoreError> in
-      if let data = try? self.fileCache.loadFile(path: ""),
-         let heroes = try? JSONDecoder().decode(Heroes.self, from: data) {
-          return Result.Publisher(heroes.values.sorted(by: orderedById))
-            .eraseToAnyPublisher()
-      }
-      return self.session
-        .dataTaskPublisher(for: self.url)
-        .map(\.data)
-        .handleEvents(receiveOutput: { data in
-          try? self.fileCache.persist(data: data, path: "")
-        })
-        .decode(type: Heroes.self, decoder: JSONDecoder())
-        .map {
-          $0.values.sorted(by: orderedById)
-        }
-        .mapError(CoreError.network)
-        .eraseToAnyPublisher()
-    }
-    .eraseToAnyPublisher()
-  }
-}
-
-func orderedById(lhs: Hero, rhs: Hero) -> Bool {
-  return lhs.id < rhs.id
-}

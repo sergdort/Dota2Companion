@@ -14,21 +14,16 @@ extension URLSession {
 
 final class PlayerRepository {
   private let playerId = CurrentUser.currentUserId
-  private let baseURL = URL(string: "https://api.opendota.com/api")!
-  private let appBaseURL = URL(string: "https://www.opendota.com")!
+  private let environment: Environment = .prod
   private let session = URLSession.withCache
-  private let playerCache: FileCache
-
-  init() {
-    self.playerCache = FileCache(name: "PlayerRepository")
-  }
+  private let playerCache = FileCache(name: "PlayerRepository")
 
   func getPlayer() -> AnyPublisher<Player, CoreError> {
     let resource = Resource(
       path: "players/\(playerId)",
       method: .GET
     )
-    let request = resource.toRequest(baseURL)
+    let request = resource.toRequest(environment.apiBaseURL)
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
 
@@ -45,7 +40,7 @@ final class PlayerRepository {
       path: "players/\(playerId)/wl",
       method: .GET
     )
-    let request = resource.toRequest(baseURL)
+    let request = resource.toRequest(environment.apiBaseURL)
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
 
@@ -61,17 +56,17 @@ final class PlayerRepository {
     if let leaderBank = player.leaderboardRank {
       if leaderBank <= 10 { // top 10 and top 100 positions have different icons
         return RankIcon(
-          medal: appBaseURL
+          medal: environment.appBaseURL
             .appendingPathComponent("/assets/images/dota2/rank_icons/rank_icon_8c.png")
         )
       } else if leaderBank <= 100 {
         return RankIcon(
-          medal: appBaseURL
+          medal: environment.appBaseURL
             .appendingPathComponent("/assets/images/dota2/rank_icons/rank_icon_8b.png")
         )
       } else {
         return RankIcon(
-          medal: appBaseURL
+          medal: environment.appBaseURL
             .appendingPathComponent("/assets/images/dota2/rank_icons/rank_icon_8.png")
         )
       }
@@ -84,9 +79,9 @@ final class PlayerRepository {
       }
       let icon = Int(floor(Double(player.rankTier) / 10))
       return RankIcon(
-        stars: appBaseURL
+        stars: environment.appBaseURL
           .appendingPathComponent("/assets/images/dota2/rank_icons/rank_star_\(star).png"),
-        medal: appBaseURL
+        medal: environment.appBaseURL
           .appendingPathComponent("/assets/images/dota2/rank_icons/rank_icon_\(icon).png")
       )
     } else {
