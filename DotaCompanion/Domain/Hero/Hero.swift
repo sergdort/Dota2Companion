@@ -1,7 +1,69 @@
 import Foundation
 import Combine
 
-struct Hero: Codable {
+public struct Hero: Codable {
+  public init(
+    id: Int,
+    name: String,
+    localizedName: String,
+    primaryAttr: PrimaryAttr,
+    attackType: AttackType,
+    roles: [Role],
+    img: String,
+    icon: String,
+    baseHealth: Int,
+    baseHealthRegen: Double? = nil,
+    baseMana: Int,
+    baseManaRegen: Double,
+    baseArmor: Double,
+    baseMr: Int,
+    baseAttackMin: Int,
+    baseAttackMax: Int,
+    baseStr: Int,
+    baseAgi: Int,
+    baseInt: Int,
+    strGain: Double,
+    agiGain: Double,
+    intGain: Double,
+    attackRange: Int,
+    projectileSpeed: Int,
+    attackRate: Double,
+    moveSpeed: Int,
+    turnRate: Double? = nil,
+    cmEnabled: Bool,
+    legs: Int
+  ) {
+    self.id = id
+    self.name = name
+    self.localizedName = localizedName
+    self.primaryAttr = primaryAttr
+    self.attackType = attackType
+    self.roles = roles
+    self.img = img
+    self.icon = icon
+    self.baseHealth = baseHealth
+    self.baseHealthRegen = baseHealthRegen
+    self.baseMana = baseMana
+    self.baseManaRegen = baseManaRegen
+    self.baseArmor = baseArmor
+    self.baseMr = baseMr
+    self.baseAttackMin = baseAttackMin
+    self.baseAttackMax = baseAttackMax
+    self.baseStr = baseStr
+    self.baseAgi = baseAgi
+    self.baseInt = baseInt
+    self.strGain = strGain
+    self.agiGain = agiGain
+    self.intGain = intGain
+    self.attackRange = attackRange
+    self.projectileSpeed = projectileSpeed
+    self.attackRate = attackRate
+    self.moveSpeed = moveSpeed
+    self.turnRate = turnRate
+    self.cmEnabled = cmEnabled
+    self.legs = legs
+  }
+
   var id: Int
   var name, localizedName: String
   var primaryAttr: PrimaryAttr
@@ -49,6 +111,40 @@ struct Hero: Codable {
     case turnRate = "turn_rate"
     case cmEnabled = "cm_enabled"
     case legs
+  }
+
+  static var fixture: Hero {
+    return Hero(
+      id: 0,
+      name: "",
+      localizedName: "",
+      primaryAttr: .agi,
+      attackType: .melee,
+      roles: [],
+      img: "",
+      icon: "",
+      baseHealth: 0,
+      baseHealthRegen: 0,
+      baseMana: 0,
+      baseManaRegen: 0,
+      baseArmor: 0,
+      baseMr: 0,
+      baseAttackMin: 0,
+      baseAttackMax: 0,
+      baseStr: 0,
+      baseAgi: 0,
+      baseInt: 0,
+      strGain: 0,
+      agiGain: 0,
+      intGain: 0,
+      attackRange: 0,
+      projectileSpeed: 0,
+      attackRate: 0,
+      moveSpeed: 0,
+      turnRate: 0,
+      cmEnabled: false,
+      legs: 0
+    )
   }
 
   static func orderedById(lhs: Hero, rhs: Hero) -> Bool {

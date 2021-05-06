@@ -16,6 +16,8 @@
 		251A038126434BC600A1348B /* CacheFileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BC247426418C6700664F72 /* CacheFileRepository.swift */; };
 		251A03CB264404D000A1348B /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A03CA264404D000A1348B /* Environment.swift */; };
 		251A03D026440DC300A1348B /* HeroRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A03CF26440DC300A1348B /* HeroRepository.swift */; };
+		251A03D62644145E00A1348B /* RecentPerformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A03D52644145E00A1348B /* RecentPerformance.swift */; };
+		251A03DE2644162000A1348B /* RecentPerformanceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A03DD2644162000A1348B /* RecentPerformanceRepository.swift */; };
 		258EC6E92640445700AD0024 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6E82640445700AD0024 /* PlayerView.swift */; };
 		258EC6ED26405DD800AD0024 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6EC26405DD800AD0024 /* AsyncImage.swift */; };
 		258EC6EF26405E0800AD0024 /* Publisher+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6EE26405E0800AD0024 /* Publisher+Extensions.swift */; };
@@ -60,6 +62,8 @@
 		251A036B26432D5E00A1348B /* PlayerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRepository.swift; sourceTree = "<group>"; };
 		251A03CA264404D000A1348B /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		251A03CF26440DC300A1348B /* HeroRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroRepository.swift; sourceTree = "<group>"; };
+		251A03D52644145E00A1348B /* RecentPerformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPerformance.swift; sourceTree = "<group>"; };
+		251A03DD2644162000A1348B /* RecentPerformanceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPerformanceRepository.swift; sourceTree = "<group>"; };
 		258EC6E82640445700AD0024 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		258EC6EC26405DD800AD0024 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		258EC6EE26405E0800AD0024 /* Publisher+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extensions.swift"; sourceTree = "<group>"; };
@@ -129,6 +133,15 @@
 				251A035F264302D900A1348B /* CurrentUser.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		251A03D42644143B00A1348B /* RecentPerformace */ = {
+			isa = PBXGroup;
+			children = (
+				251A03D52644145E00A1348B /* RecentPerformance.swift */,
+				251A03DD2644162000A1348B /* RecentPerformanceRepository.swift */,
+			);
+			path = RecentPerformace;
 			sourceTree = "<group>";
 		};
 		258EC6EA26405D3900AD0024 /* Hero */ = {
@@ -225,6 +238,7 @@
 		25F86EAA263FFD4E00546CB2 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				251A03D42644143B00A1348B /* RecentPerformace */,
 				251A0364264302DD00A1348B /* User */,
 				251A03512643013700A1348B /* Match */,
 				258EC6EA26405D3900AD0024 /* Hero */,
@@ -384,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				251A03D62644145E00A1348B /* RecentPerformance.swift in Sources */,
 				251A038126434BC600A1348B /* CacheFileRepository.swift in Sources */,
 				258EC6ED26405DD800AD0024 /* AsyncImage.swift in Sources */,
 				258EC6F32640634B00AD0024 /* Colors.swift in Sources */,
@@ -404,6 +419,7 @@
 				25F86EAF2640041200546CB2 /* Resource.swift in Sources */,
 				25F86EB32640086E00546CB2 /* RootView.swift in Sources */,
 				25F86EAD263FFDD600546CB2 /* Hero.swift in Sources */,
+				251A03DE2644162000A1348B /* RecentPerformanceRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

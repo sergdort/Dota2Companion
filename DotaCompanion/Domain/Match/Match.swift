@@ -19,6 +19,10 @@ public struct Match: Codable {
     playerSlot < 128
   }
 
+  public var isWin: Bool {
+    isRadiant == radiantWin
+  }
+
   public init(
     matchID: Int,
     playerSlot: Int,
@@ -95,5 +99,9 @@ public struct Match: Codable {
     case cluster
     case leaverStatus = "leaver_status"
     case partySize = "party_size"
+  }
+
+  static func sortByKillsDesc(lhs: Match, rhs: Match) -> Bool {
+    return lhs.kills > rhs.kills
   }
 }
