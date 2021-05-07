@@ -14,16 +14,18 @@
 		251A0360264302D900A1348B /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A035F264302D900A1348B /* CurrentUser.swift */; };
 		251A036C26432D5E00A1348B /* PlayerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A036B26432D5E00A1348B /* PlayerRepository.swift */; };
 		251A038126434BC600A1348B /* CacheFileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BC247426418C6700664F72 /* CacheFileRepository.swift */; };
-		251A03CB264404D000A1348B /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A03CA264404D000A1348B /* Environment.swift */; };
+		251A03CB264404D000A1348B /* ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A03CA264404D000A1348B /* ENV.swift */; };
 		251A03D026440DC300A1348B /* HeroRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A03CF26440DC300A1348B /* HeroRepository.swift */; };
 		251A03D62644145E00A1348B /* RecentPerformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A03D52644145E00A1348B /* RecentPerformance.swift */; };
 		251A03DE2644162000A1348B /* RecentPerformanceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A03DD2644162000A1348B /* RecentPerformanceRepository.swift */; };
+		251A03E326447BF700A1348B /* RecentPerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A03E226447BF700A1348B /* RecentPerformanceView.swift */; };
+		251A03EE264491FF00A1348B /* RecentPerformanceOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A03ED264491FF00A1348B /* RecentPerformanceOverview.swift */; };
 		258EC6E92640445700AD0024 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6E82640445700AD0024 /* PlayerView.swift */; };
 		258EC6ED26405DD800AD0024 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6EC26405DD800AD0024 /* AsyncImage.swift */; };
 		258EC6EF26405E0800AD0024 /* Publisher+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6EE26405E0800AD0024 /* Publisher+Extensions.swift */; };
 		258EC6F32640634B00AD0024 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6F22640634B00AD0024 /* Colors.swift */; };
 		258EC6F5264064C000AD0024 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6F4264064C000AD0024 /* Theme.swift */; };
-		258EC6F726406C9300AD0024 /* PlayerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6F626406C9300AD0024 /* PlayerContainerView.swift */; };
+		258EC6F726406C9300AD0024 /* PlayerOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6F626406C9300AD0024 /* PlayerOverview.swift */; };
 		25F86E77263FFA3800546CB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F86E76263FFA3800546CB2 /* AppDelegate.swift */; };
 		25F86E79263FFA3800546CB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F86E78263FFA3800546CB2 /* SceneDelegate.swift */; };
 		25F86E7D263FFA3A00546CB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25F86E7C263FFA3A00546CB2 /* Assets.xcassets */; };
@@ -60,16 +62,18 @@
 		251A035A2643029800A1348B /* MatchesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesRepository.swift; sourceTree = "<group>"; };
 		251A035F264302D900A1348B /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		251A036B26432D5E00A1348B /* PlayerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRepository.swift; sourceTree = "<group>"; };
-		251A03CA264404D000A1348B /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		251A03CA264404D000A1348B /* ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENV.swift; sourceTree = "<group>"; };
 		251A03CF26440DC300A1348B /* HeroRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroRepository.swift; sourceTree = "<group>"; };
 		251A03D52644145E00A1348B /* RecentPerformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPerformance.swift; sourceTree = "<group>"; };
 		251A03DD2644162000A1348B /* RecentPerformanceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPerformanceRepository.swift; sourceTree = "<group>"; };
+		251A03E226447BF700A1348B /* RecentPerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPerformanceView.swift; sourceTree = "<group>"; };
+		251A03ED264491FF00A1348B /* RecentPerformanceOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPerformanceOverview.swift; sourceTree = "<group>"; };
 		258EC6E82640445700AD0024 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		258EC6EC26405DD800AD0024 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		258EC6EE26405E0800AD0024 /* Publisher+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extensions.swift"; sourceTree = "<group>"; };
 		258EC6F22640634B00AD0024 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		258EC6F4264064C000AD0024 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		258EC6F626406C9300AD0024 /* PlayerContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerContainerView.swift; sourceTree = "<group>"; };
+		258EC6F626406C9300AD0024 /* PlayerOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerOverview.swift; sourceTree = "<group>"; };
 		25BC247426418C6700664F72 /* CacheFileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheFileRepository.swift; sourceTree = "<group>"; };
 		25F86E73263FFA3800546CB2 /* DotaCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F86E76263FFA3800546CB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 			children = (
 				251A03D52644145E00A1348B /* RecentPerformance.swift */,
 				251A03DD2644162000A1348B /* RecentPerformanceRepository.swift */,
+				251A03E226447BF700A1348B /* RecentPerformanceView.swift */,
+				251A03ED264491FF00A1348B /* RecentPerformanceOverview.swift */,
 			);
 			path = RecentPerformace;
 			sourceTree = "<group>";
@@ -245,7 +251,7 @@
 				25F86EB42640398000546CB2 /* Player */,
 				25F86EAE2640041200546CB2 /* Resource.swift */,
 				25F86EB02640047D00546CB2 /* CoreError.swift */,
-				251A03CA264404D000A1348B /* Environment.swift */,
+				251A03CA264404D000A1348B /* ENV.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -256,7 +262,7 @@
 				25F86EB52640399900546CB2 /* Player.swift */,
 				251A036B26432D5E00A1348B /* PlayerRepository.swift */,
 				258EC6E82640445700AD0024 /* PlayerView.swift */,
-				258EC6F626406C9300AD0024 /* PlayerContainerView.swift */,
+				258EC6F626406C9300AD0024 /* PlayerOverview.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -402,11 +408,12 @@
 				251A038126434BC600A1348B /* CacheFileRepository.swift in Sources */,
 				258EC6ED26405DD800AD0024 /* AsyncImage.swift in Sources */,
 				258EC6F32640634B00AD0024 /* Colors.swift in Sources */,
+				251A03EE264491FF00A1348B /* RecentPerformanceOverview.swift in Sources */,
 				258EC6E92640445700AD0024 /* PlayerView.swift in Sources */,
 				25F86E77263FFA3800546CB2 /* AppDelegate.swift in Sources */,
 				251A03D026440DC300A1348B /* HeroRepository.swift in Sources */,
 				258EC6F5264064C000AD0024 /* Theme.swift in Sources */,
-				258EC6F726406C9300AD0024 /* PlayerContainerView.swift in Sources */,
+				258EC6F726406C9300AD0024 /* PlayerOverview.swift in Sources */,
 				251A035B2643029800A1348B /* MatchesRepository.swift in Sources */,
 				25F86E79263FFA3800546CB2 /* SceneDelegate.swift in Sources */,
 				251A03532643014D00A1348B /* Match.swift in Sources */,
@@ -415,7 +422,8 @@
 				251A0360264302D900A1348B /* CurrentUser.swift in Sources */,
 				25F86EB12640047D00546CB2 /* CoreError.swift in Sources */,
 				25F86EB62640399900546CB2 /* Player.swift in Sources */,
-				251A03CB264404D000A1348B /* Environment.swift in Sources */,
+				251A03CB264404D000A1348B /* ENV.swift in Sources */,
+				251A03E326447BF700A1348B /* RecentPerformanceView.swift in Sources */,
 				25F86EAF2640041200546CB2 /* Resource.swift in Sources */,
 				25F86EB32640086E00546CB2 /* RootView.swift in Sources */,
 				25F86EAD263FFDD600546CB2 /* Hero.swift in Sources */,

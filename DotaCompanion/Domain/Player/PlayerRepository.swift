@@ -14,7 +14,7 @@ extension URLSession {
 
 final class PlayerRepository {
   private let playerId = CurrentUser.currentUserId
-  private let environment: Environment = .prod
+  private let environment: ENV = .prod
   private let session = URLSession.withCache
   private let playerCache = FileCache(name: "PlayerRepository")
 

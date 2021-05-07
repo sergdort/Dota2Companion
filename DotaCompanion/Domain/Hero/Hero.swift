@@ -152,18 +152,18 @@ public struct Hero: Codable {
   }
 }
 
-enum AttackType: String, Codable {
+public enum AttackType: String, Codable {
   case melee = "Melee"
   case ranged = "Ranged"
 }
 
-enum PrimaryAttr: String, Codable {
+public enum PrimaryAttr: String, Codable {
   case agi
   case int
   case str
 }
 
-enum Role: String, Codable {
+public enum Role: String, Codable {
   case carry = "Carry"
   case disabler = "Disabler"
   case durable = "Durable"
@@ -176,3 +176,15 @@ enum Role: String, Codable {
 }
 
 typealias Heroes = [String: Hero]
+
+import UIKit
+
+extension Optional where Wrapped == Hero {
+  func iconPublisher(imageFetcher: ImageFetcher) -> AnyPublisher<UIImage, Never> {
+    if let hero = self {
+      let iconPath = hero.icon.hasPrefix("/") ? String(hero.icon.dropFirst()) : hero.icon
+      return imageFetcher.image(for: ENV.prod.assetsBaseURL.appendingPathComponent(iconPath))
+    }
+    return Empty().eraseToAnyPublisher()
+  }
+}

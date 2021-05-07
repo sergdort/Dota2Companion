@@ -55,7 +55,7 @@ enum PlayerOverview {
           .map { tuple in
             Event.didLoad(tuple.0, repository.rankImage(for: tuple.0), tuple.1)
           }
-          .replaceError(replace: Event.didFail)
+          .replaceError(Event.didFail)
           .receive(on: DispatchQueue.main)
       }
     }

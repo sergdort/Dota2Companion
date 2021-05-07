@@ -3,7 +3,7 @@ import Foundation
 
 public final class MatchesRepository {
   private let playerId = CurrentUser.currentUserId
-  private let environment: Environment = .prod
+  private let environment: ENV = .prod
   private let session = URLSession.withCache
   private let cache = FileCache(name: "MatchesRepository")
 

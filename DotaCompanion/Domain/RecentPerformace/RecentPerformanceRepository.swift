@@ -26,6 +26,7 @@ final class RecentPerformanceRepository {
 
     let averageKills = matches.average(by: \.kills)
     let maxKillsMatch = matches.max(by: \.kills)!
+    let kills = matches.map(\.kills)
 
     let averageDeaths = matches.average(by: \.deaths)
     let maxDeathsMatch = matches.max(by: \.deaths)!
@@ -124,6 +125,6 @@ extension Array {
   }
 
   func max<Attribute: Comparable>(by keyPath: KeyPath<Element, Attribute>) -> Element? {
-    self.max(by: { lhs, rhs in lhs[keyPath: keyPath] > rhs[keyPath: keyPath] })
+    self.max(by: { lhs, rhs in lhs[keyPath: keyPath] < rhs[keyPath: keyPath] })
   }
 }

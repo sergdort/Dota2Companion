@@ -6,6 +6,7 @@ enum Colors: String {
   case textSecondary = "text_secondary"
   case win
   case lose
+  case gold
   
   private final class BundleFinder {}
   
