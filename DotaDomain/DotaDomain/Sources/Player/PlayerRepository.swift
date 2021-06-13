@@ -1,55 +1,40 @@
 import Combine
 import Foundation
-
-extension URLSession {
-  static let withCache: URLSession = {
-    let cachesURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-    let diskCacheURL = cachesURL.appendingPathComponent("DownloadCache")
-    let cache = URLCache(memoryCapacity: 10_000_000, diskCapacity: 1_000_000_000, directory: diskCacheURL)
-    let config = URLSessionConfiguration.default
-    config.urlCache = cache
-    return URLSession(configuration: config)
-  }()
-}
+import DotaCore
 
 final class PlayerRepository {
   private let playerId = CurrentUser.currentUserId
   private let environment: ENV = .prod
-  private let session = URLSession.withCache
+  private let session = URLSession.shared
   private let playerCache = FileCache(name: "PlayerRepository")
 
-  func getPlayer() -> AnyPublisher<Player, CoreError> {
-    let resource = Resource(
+  private var playerResource: Resource {
+    Resource(
       path: "players/\(playerId)",
       method: .GET
     )
-    let request = resource.toRequest(environment.apiBaseURL)
-    let decoder = JSONDecoder()
-    decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-    return session.dataTaskPublisher(for: request)
-      .map(\.data)
-      .prependAndStore(from: playerCache, path: resource.path + ".json")
-      .decode(type: Player.self, decoder: decoder)
-      .mapError(CoreError.network)
-      .eraseToAnyPublisher()
   }
 
-  func winLoses() -> AnyPublisher<WinsStats, CoreError> {
-    let resource = Resource(
-      path: "players/\(playerId)/wl",
-      method: .GET
-    )
-    let request = resource.toRequest(environment.apiBaseURL)
+  func player() -> Player? {
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-    return session.dataTaskPublisher(for: request)
-      .map(\.data)
-      .prependAndStore(from: playerCache, path: resource.path + ".json")
-      .decode(type: WinsStats.self, decoder: decoder)
-      .mapError(CoreError.network)
-      .eraseToAnyPublisher()
+    return try? playerCache.loadFile(path: playerResource.path + ".json")
+      .decode(Player.self, decoder: decoder)
+  }
+
+  func fetchPlayer() async throws -> Player {
+    let request = playerResource.toRequest(environment.apiBaseURL)
+    let decoder = JSONDecoder()
+    let encoder = JSONEncoder()
+
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+
+    let player = try await session.fetch(Player.self, request: request, decoder: decoder)
+    try playerCache.persist(item: player, encoder: encoder, path: playerResource.path + ".json")
+
+    return player
   }
 
   func rankImage(for player: Player) -> RankIcon? {

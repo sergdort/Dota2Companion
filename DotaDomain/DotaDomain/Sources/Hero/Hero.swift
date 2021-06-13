@@ -176,15 +176,3 @@ public enum Role: String, Codable {
 }
 
 typealias Heroes = [String: Hero]
-
-import UIKit
-
-extension Optional where Wrapped == Hero {
-  func iconPublisher(imageFetcher: ImageFetcher) -> AnyPublisher<UIImage, Never> {
-    if let hero = self {
-      let iconPath = hero.icon.hasPrefix("/") ? String(hero.icon.dropFirst()) : hero.icon
-      return imageFetcher.image(for: ENV.prod.assetsBaseURL.appendingPathComponent(iconPath))
-    }
-    return Empty().eraseToAnyPublisher()
-  }
-}

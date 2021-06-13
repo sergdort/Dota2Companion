@@ -1,14 +1,20 @@
 import Combine
 
 final class RecentPerformanceRepository {
-  let matchesRepo = MatchesRepository()
-  let heroesRepo = HeroRepository()
+  private let matchesRepo = MatchesRepository()
+  private let heroesRepo = HeroRepository()
 
-  func recentPerformance() -> AnyPublisher<RecentPerformance, CoreError> {
-    return heroesRepo.getHeroes()
-      .combineLatest(matchesRepo.recentMatches())
-      .map(makeRecentPerformance)
-      .eraseToAnyPublisher()
+  public func recentPerformance() -> RecentPerformance? {
+    let matches = matchesRepo.recentMatches()
+    let heroes = heroesRepo.heroes()
+    return makeRecentPerformance(heroes: heroes, matches: matches)
+  }
+
+  public func fetchRecentPerformance() async throws -> RecentPerformance {
+    async let matches = try matchesRepo.fetchRecentMatches()
+    async let heroes = try heroesRepo.fetchHeroes()
+
+    return await makeRecentPerformance(heroes: try heroes, matches: try matches)
   }
 
   private func makeRecentPerformance(
@@ -19,14 +25,13 @@ final class RecentPerformanceRepository {
       return .empty
     }
     let numberOfGames = matches.count
-    let winsCount = matches.reduce(0) { (acum, match) in
-      return acum + (match.isWin ? 1 : 0)
+    let winsCount = matches.reduce(0) { acum, match in
+      acum + (match.isWin ? 1 : 0)
     }
     let winRate = Double(winsCount) / Double(numberOfGames)
 
     let averageKills = matches.average(by: \.kills)
     let maxKillsMatch = matches.max(by: \.kills)!
-    let kills = matches.map(\.kills)
 
     let averageDeaths = matches.average(by: \.deaths)
     let maxDeathsMatch = matches.max(by: \.deaths)!
@@ -112,7 +117,7 @@ extension Array where Element == Hero {
 
 extension Array {
   func sum(by keyPath: KeyPath<Element, Int>) -> Int {
-    return reduce(0) { (acum, element) in
+    return reduce(0) { acum, element in
       acum + element[keyPath: keyPath]
     }
   }

@@ -1,34 +1,35 @@
 import Foundation
 
-final class FileCache {
+public final class FileCache {
   private let fileManager = FileManager.default
   private let directory: String
 
-  init(name: String) {
+  public init(name: String) {
     self.directory = "\(Bundle.main.bundleIdentifier ?? "")/" + (name.hasPrefix("/") ? String(name.dropFirst()) : name)
   }
 
-  func loadFile(path: String) throws -> Data {
+  public func loadFile(path: String) throws -> Data {
     let fileURL = directoryURL.appendingPathComponent(path)
     return try Data(contentsOf: fileURL)
   }
 
-  func persist(data: Data, path: String) throws {
+  public func persist(data: Data, path: String) throws {
     let path = path.hasPrefix("/") ? String(path.dropFirst()) : path
-    do {
-      try createDirectoryIfNeeded()
-      let fileURL = directoryURL.appendingPathComponent(path)
-      let fileDirectoryURL = fileURL.deletingLastPathComponent()
-      try createDirectoryIfNeeded(for: fileDirectoryURL)
+    try createDirectoryIfNeeded()
+    let fileURL = directoryURL.appendingPathComponent(path)
+    let fileDirectoryURL = fileURL.deletingLastPathComponent()
+    try createDirectoryIfNeeded(for: fileDirectoryURL)
 
-      if fileManager.fileExists(atPath: fileURL.path) {
-        try fileManager.removeItem(at: fileURL)
-      }
-
-      try data.write(to: fileURL, options: .atomic)
-    } catch {
-      throw error
+    if fileManager.fileExists(atPath: fileURL.path) {
+      try fileManager.removeItem(at: fileURL)
     }
+
+    try data.write(to: fileURL, options: .atomic)
+  }
+
+  public func persist<T: Encodable>(item: T, encoder: JSONEncoder, path: String) throws {
+    let data = try encoder.encode(item)
+    try persist(data: data, path: path)
   }
 
   private func createDirectoryIfNeeded() throws {

@@ -1,7 +1,9 @@
 import SwiftUI
 import Combine
+import UIKit
 
 public struct RecentPerformanceView: View {
+  var winRate: Double
   var kills: RecentPerformance.Value
   var deaths: RecentPerformance.Value
   var assists: RecentPerformance.Value
@@ -16,7 +18,7 @@ public struct RecentPerformanceView: View {
         secondaryText: "in last 20 displayed matches"
       )
       HStack {
-        WinRateView(winRate: 65)
+        WinRateView(winRate: Int(winRate * 100))
         MatchStatView(
           name: "KILLS",
           averageValue: kills.average.toInt,
@@ -115,5 +117,15 @@ struct MatchStatView: View {
 extension Double {
   var toInt: Int {
     Int(self)
+  }
+}
+
+extension Optional where Wrapped == Hero {
+  func iconPublisher(imageFetcher: ImageFetcher) -> AnyPublisher<UIImage, Never> {
+    if let hero = self {
+      let iconPath = hero.icon.hasPrefix("/") ? String(hero.icon.dropFirst()) : hero.icon
+      return imageFetcher.image(for: ENV.prod.assetsBaseURL.appendingPathComponent(iconPath))
+    }
+    return Empty().eraseToAnyPublisher()
   }
 }

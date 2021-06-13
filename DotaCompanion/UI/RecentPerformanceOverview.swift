@@ -18,6 +18,7 @@ enum RecentPerformanceOverview {
 
     var body: some View {
       RecentPerformanceView(
+        winRate: context.recentPerformance.winRate,
         kills: context.recentPerformance.kills,
         deaths: context.recentPerformance.deaths,
         assists: context.recentPerformance.assists
@@ -26,46 +27,47 @@ enum RecentPerformanceOverview {
     }
   }
 
-
   struct State {
     var recentPerformance: RecentPerformance = .empty
     var isLoading = true
   }
 
   enum Event {
-    case didLoad(RecentPerformance)
-    case didFail(CoreError)
+    case update(DataSourceBase<RecentPerformance>.State)
   }
 
   final class ViewModel: Store<State, Event> {
     init() {
+      let dataSource = RecentPerformanceRepository().recentPerformance()
+      let initialState: State
+      switch dataSource.state {
+      case let .value(value):
+        initialState = State(recentPerformance: value, isLoading: false)
+      case .loading:
+        initialState = State()
+      case let .failed:
+        initialState = State(recentPerformance: .empty, isLoading: false)
+      }
       super.init(
-        initial: State(),
+        initial: initialState,
         feedbacks: [
-          Self.whenLoading(repository: RecentPerformanceRepository())
+          Self.whenLoading(dataSource: dataSource)
         ],
         reducer: Self.reducer
       )
     }
 
     private static func whenLoading(
-      repository: RecentPerformanceRepository
+      dataSource: DataSourceBase<RecentPerformance>
     ) -> Feedback<State, Event> {
-      Feedback(predicate: \.isLoading) { _ in
-        repository.recentPerformance()
-          .map(Event.didLoad)
-          .replaceError(Event.didFail)
-          .receive(on: DispatchQueue.main)
-      }
+      return .observing(source: dataSource.$state, as: Event.update)
     }
 
     private static func reducer(state: inout State, event: Event) {
       switch event {
-      case let .didLoad(performance):
-        state.recentPerformance = performance
-        state.isLoading = false
-      case .didFail:
-        break
+      case let .update(.value(recentPerformance)):
+        state.recentPerformance = recentPerformance
+      case .update(.failed(<#T##CoreError#>))
       }
     }
   }

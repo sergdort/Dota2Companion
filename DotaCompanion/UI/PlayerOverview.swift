@@ -49,7 +49,7 @@ enum PlayerOverview {
     private static func whenLoading(
       repository: PlayerRepository
     ) -> Feedback<State, Event> {
-      Feedback(predicate: \.isLoading) { _ in
+      .predicateMultiple(predicate: \.isLoading) { _ in
         repository.getPlayer()
           .zip(repository.winLoses())
           .map { tuple in
@@ -91,6 +91,43 @@ enum PlayerOverview {
         loses: context.winStats.lose
       )
       .redacted(reason: context.isLoading ? .placeholder : [])
+    }
+  }
+}
+
+extension Feedback {
+  static func predicateMultiple<Effect: Publisher>(
+    predicate: @escaping (State) -> Bool,
+    effects: @escaping (State) -> Effect
+  ) -> Feedback where Effect.Failure == Never, Effect.Output == Event {
+    return .compactingNotCancelable(
+      transform: { $0 },
+      effects: { state -> AnyPublisher<Event, Never> in
+        predicate(state) ? effects(state).eraseToAnyPublisher() : Empty().eraseToAnyPublisher()
+      }
+    )
+  }
+
+  static func compactingNotCancelable<U, Effect: Publisher>(
+    transform: @escaping (AnyPublisher<State, Never>) -> AnyPublisher<U, Never>,
+    effects: @escaping (U) -> Effect
+  ) -> Feedback where Effect.Output == Event, Effect.Failure == Never {
+    custom { state, output in
+      transform(state)
+        .flatMap {
+          effects($0).enqueue(to: output)
+        }
+        .sink { _ in }
+    }
+  }
+
+  static func observing<U, Effect: Publisher>(
+    source: Effect,
+    as f: @escaping (U) -> Event
+  ) -> Feedback<State, Event> where Effect.Failure == Never, Effect.Output == U {
+    .custom { (_, consumer) -> Cancellable in
+      source.map(f).enqueue(to: consumer)
+        .sink(receiveValue: { _ in })
     }
   }
 }
