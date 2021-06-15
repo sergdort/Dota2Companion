@@ -1,5 +1,5 @@
 
-public struct RecentPerformance {
+public struct RecentPerformance: Equatable {
   public let numberOfGames: Int
   public let winRate: Double
   public let kills: Value
@@ -12,7 +12,7 @@ public struct RecentPerformance {
   public let heroHeal: Value
   public let towerDmg: Value
 
-  public struct Value {
+  public struct Value: Equatable {
     public let average: Double
     public let max: Int
     public let maxHero: Hero?

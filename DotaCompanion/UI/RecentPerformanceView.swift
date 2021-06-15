@@ -1,6 +1,7 @@
 import SwiftUI
 import Combine
 import UIKit
+import DotaDomain
 
 public struct RecentPerformanceView: View {
   var winRate: Double

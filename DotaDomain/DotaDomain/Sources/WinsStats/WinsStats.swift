@@ -1,6 +1,6 @@
 import Foundation
 
-public struct WinsStats: Codable {
+public struct WinsStats: Equatable, Codable {
   public var win: Int
   public var lose: Int
 

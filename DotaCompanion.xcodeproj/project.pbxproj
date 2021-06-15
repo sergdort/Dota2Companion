@@ -15,12 +15,10 @@
 		2518F23F2676AE3D008ABAA7 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2518F23B2676AE3D008ABAA7 /* PlayerView.swift */; };
 		2518F2402676AE3D008ABAA7 /* PlayerOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2518F23C2676AE3D008ABAA7 /* PlayerOverview.swift */; };
 		2518F2412676AE3D008ABAA7 /* RecentPerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2518F23D2676AE3D008ABAA7 /* RecentPerformanceView.swift */; };
-		254B4E012676782400653BB8 /* CombineFeedback in Frameworks */ = {isa = PBXBuildFile; productRef = 254B4E002676782400653BB8 /* CombineFeedback */; };
-		254B4E032676782400653BB8 /* CombineFeedbackUI in Frameworks */ = {isa = PBXBuildFile; productRef = 254B4E022676782400653BB8 /* CombineFeedbackUI */; };
-		25596681265C44FB000B2B72 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25596680265C44FB000B2B72 /* AppState.swift */; };
 		258EC6ED26405DD800AD0024 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6EC26405DD800AD0024 /* AsyncImage.swift */; };
 		258EC6F32640634B00AD0024 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6F22640634B00AD0024 /* Colors.swift */; };
 		258EC6F5264064C000AD0024 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6F4264064C000AD0024 /* Theme.swift */; };
+		25BD864826794B7300872CD6 /* CombineFeedback in Frameworks */ = {isa = PBXBuildFile; productRef = 25BD864726794B7300872CD6 /* CombineFeedback */; };
 		25F86E77263FFA3800546CB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F86E76263FFA3800546CB2 /* AppDelegate.swift */; };
 		25F86E79263FFA3800546CB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F86E78263FFA3800546CB2 /* SceneDelegate.swift */; };
 		25F86E7D263FFA3A00546CB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25F86E7C263FFA3A00546CB2 /* Assets.xcassets */; };
@@ -70,10 +68,10 @@
 		2518F23B2676AE3D008ABAA7 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		2518F23C2676AE3D008ABAA7 /* PlayerOverview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerOverview.swift; sourceTree = "<group>"; };
 		2518F23D2676AE3D008ABAA7 /* RecentPerformanceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPerformanceView.swift; sourceTree = "<group>"; };
-		25596680265C44FB000B2B72 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		258EC6EC26405DD800AD0024 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		258EC6F22640634B00AD0024 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		258EC6F4264064C000AD0024 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		25BD863D26793BD600872CD6 /* CombineFeedback */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CombineFeedback; path = ../CombineFeedback; sourceTree = "<group>"; };
 		25F86E73263FFA3800546CB2 /* DotaCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F86E76263FFA3800546CB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25F86E78263FFA3800546CB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,9 +93,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				254B4E012676782400653BB8 /* CombineFeedback in Frameworks */,
-				254B4E032676782400653BB8 /* CombineFeedbackUI in Frameworks */,
 				2518F22826767CB0008ABAA7 /* DotaDomain.framework in Frameworks */,
+				25BD864826794B7300872CD6 /* CombineFeedback in Frameworks */,
 				2518F22C26767CBD008ABAA7 /* DotaCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,9 +153,18 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		25BD863C26793BD600872CD6 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				25BD863D26793BD600872CD6 /* CombineFeedback */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		25F86E6A263FFA3800546CB2 = {
 			isa = PBXGroup;
 			children = (
+				25BD863C26793BD600872CD6 /* Packages */,
 				25F86E75263FFA3800546CB2 /* DotaCompanion */,
 				25F86E8C263FFA3A00546CB2 /* DotaCompanionTests */,
 				25F86E97263FFA3A00546CB2 /* DotaCompanionUITests */,
@@ -186,7 +192,6 @@
 				25F86E76263FFA3800546CB2 /* AppDelegate.swift */,
 				25F86E78263FFA3800546CB2 /* SceneDelegate.swift */,
 				25F86EB22640086E00546CB2 /* RootView.swift */,
-				25F86EAA263FFD4E00546CB2 /* Domain */,
 				25F86E7C263FFA3A00546CB2 /* Assets.xcassets */,
 				25F86E81263FFA3A00546CB2 /* LaunchScreen.storyboard */,
 				25F86E84263FFA3A00546CB2 /* Info.plist */,
@@ -221,14 +226,6 @@
 			path = DotaCompanionUITests;
 			sourceTree = "<group>";
 		};
-		25F86EAA263FFD4E00546CB2 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				25596680265C44FB000B2B72 /* AppState.swift */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -247,8 +244,7 @@
 			);
 			name = DotaCompanion;
 			packageProductDependencies = (
-				254B4E002676782400653BB8 /* CombineFeedback */,
-				254B4E022676782400653BB8 /* CombineFeedbackUI */,
+				25BD864726794B7300872CD6 /* CombineFeedback */,
 			);
 			productName = DotaCompanion;
 			productReference = 25F86E73263FFA3800546CB2 /* DotaCompanion.app */;
@@ -322,7 +318,6 @@
 			);
 			mainGroup = 25F86E6A263FFA3800546CB2;
 			packageReferences = (
-				254B4DFF2676782400653BB8 /* XCRemoteSwiftPackageReference "CombineFeedback" */,
 			);
 			productRefGroup = 25F86E74263FFA3800546CB2 /* Products */;
 			projectDirPath = "";
@@ -370,7 +365,6 @@
 				2518F23E2676AE3D008ABAA7 /* RecentPerformanceOverview.swift in Sources */,
 				258EC6ED26405DD800AD0024 /* AsyncImage.swift in Sources */,
 				2518F23F2676AE3D008ABAA7 /* PlayerView.swift in Sources */,
-				25596681265C44FB000B2B72 /* AppState.swift in Sources */,
 				258EC6F32640634B00AD0024 /* Colors.swift in Sources */,
 				25F86E77263FFA3800546CB2 /* AppDelegate.swift in Sources */,
 				258EC6F5264064C000AD0024 /* Theme.swift in Sources */,
@@ -549,6 +543,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DotaCompanion/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DotaCompanion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -569,6 +564,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DotaCompanion/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DotaCompanion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -701,27 +697,10 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		254B4DFF2676782400653BB8 /* XCRemoteSwiftPackageReference "CombineFeedback" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sergdort/CombineFeedback.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		254B4E002676782400653BB8 /* CombineFeedback */ = {
+		25BD864726794B7300872CD6 /* CombineFeedback */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 254B4DFF2676782400653BB8 /* XCRemoteSwiftPackageReference "CombineFeedback" */;
 			productName = CombineFeedback;
-		};
-		254B4E022676782400653BB8 /* CombineFeedbackUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 254B4DFF2676782400653BB8 /* XCRemoteSwiftPackageReference "CombineFeedback" */;
-			productName = CombineFeedbackUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

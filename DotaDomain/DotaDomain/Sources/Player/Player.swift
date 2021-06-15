@@ -2,7 +2,7 @@ import Combine
 import Foundation
 
 // https://api.opendota.com/api/players/118113925
-public struct Player: Codable {
+public struct Player: Equatable, Codable {
   public var rankTier: Int
   public var leaderboardRank: Int?
   public var profile: Profile
@@ -13,7 +13,7 @@ public struct Player: Codable {
     self.profile = profile
   }
 
-  public struct Profile: Codable {
+  public struct Profile: Equatable, Codable {
     public var accountId: Int
     public var name: String?
     public var personaname: String
@@ -39,7 +39,7 @@ public struct Player: Codable {
   }
 }
 
-public struct RankIcon {
+public struct RankIcon: Equatable {
   public var stars: URL?
   public var medal: URL
 

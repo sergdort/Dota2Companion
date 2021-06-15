@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "CombineFeedback",
-        "repositoryURL": "https://github.com/sergdort/CombineFeedback.git",
-        "state": {
-          "branch": "master",
-          "revision": "d03e9ec1c36ae9536c33ed5f23a4a7b79ad92f1e",
-          "version": null
-        }
-      },
-      {
         "package": "swift-case-paths",
         "repositoryURL": "https://github.com/pointfreeco/swift-case-paths.git",
         "state": {

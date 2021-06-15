@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Match: Codable {
+public struct Match: Equatable, Codable {
   public var matchID, playerSlot: Int
   public var radiantWin: Bool
   public var duration, gameMode, lobbyType, heroID: Int

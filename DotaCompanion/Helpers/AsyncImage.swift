@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import DotaCore
 
 struct AsyncImage: View {
   @State
@@ -13,7 +14,7 @@ struct AsyncImage: View {
     self.source = source
     self._image = State(initialValue: placeholder)
   }
-  
+
   var body: some View {
     return Image(uiImage: image ?? UIImage())
       .resizable()
@@ -45,7 +46,7 @@ final class ImageFetcher {
         self.cache.setObject(image, forKey: url as NSURL)
         return Result.Publisher(image).eraseToAnyPublisher()
       }
-      return URLSession.withCache
+      return URLSession.shared
         .dataTaskPublisher(for: url)
         .map(\.data)
         .handleEvents(receiveOutput: { data in
@@ -63,7 +64,7 @@ final class ImageFetcher {
 }
 
 struct ImageFetcherKey: EnvironmentKey {
-  static let defaultValue: ImageFetcher = ImageFetcher()
+  static let defaultValue = ImageFetcher()
 }
 
 extension EnvironmentValues {

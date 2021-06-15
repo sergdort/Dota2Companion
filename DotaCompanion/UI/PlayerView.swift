@@ -1,5 +1,6 @@
 import Combine
 import SwiftUI
+import DotaDomain
 
 typealias AsyncImageInput = (async: AnyPublisher<UIImage, Never>, placeholder: UIImage?)
 

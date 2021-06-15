@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-public struct Hero: Codable {
+public struct Hero: Equatable, Codable {
   public init(
     id: Int,
     name: String,
