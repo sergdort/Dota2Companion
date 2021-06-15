@@ -1,7 +1,7 @@
 import Foundation
 
-enum CurrentUser {
-  static var currentUserId: Int {
+public enum CurrentUser {
+  public static var currentUserId: Int {
     set {
       UserDefaults.standard.set(newValue, forKey: "CurrentUser")
     }

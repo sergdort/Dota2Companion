@@ -15,12 +15,14 @@ public final class MatchesRepository {
     )
   }
 
-  func recentMatches() -> [Match] {
+  public init() {}
+
+  public func recentMatches() -> [Match] {
     (try? cache.loadFile(path: resource.path + ".json")
       .decode([Match].self, decoder: JSONDecoder())) ?? []
   }
 
-  func fetchRecentMatches() async throws -> [Match] {
+  public func fetchRecentMatches() async throws -> [Match] {
     let request = resource.toRequest(environment.apiBaseURL)
     let matches = try await session.fetch([Match].self, request: request, decoder: JSONDecoder())
     try cache.persist(item: matches, encoder: JSONEncoder(), path: resource.path + ".json")

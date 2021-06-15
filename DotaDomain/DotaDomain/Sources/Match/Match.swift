@@ -101,7 +101,7 @@ public struct Match: Codable {
     case partySize = "party_size"
   }
 
-  static func sortByKillsDesc(lhs: Match, rhs: Match) -> Bool {
+  public static func sortByKillsDesc(lhs: Match, rhs: Match) -> Bool {
     return lhs.kills > rhs.kills
   }
 }

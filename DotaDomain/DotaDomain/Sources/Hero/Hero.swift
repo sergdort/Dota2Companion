@@ -64,25 +64,25 @@ public struct Hero: Codable {
     self.legs = legs
   }
 
-  var id: Int
-  var name, localizedName: String
-  var primaryAttr: PrimaryAttr
-  var attackType: AttackType
-  var roles: [Role]
-  var img, icon: String
-  var baseHealth: Int
-  var baseHealthRegen: Double?
-  var baseMana: Int
-  var baseManaRegen, baseArmor: Double
-  var baseMr, baseAttackMin, baseAttackMax, baseStr: Int
-  var baseAgi, baseInt: Int
-  var strGain, agiGain, intGain: Double
-  var attackRange, projectileSpeed: Int
-  var attackRate: Double
-  var moveSpeed: Int
-  var turnRate: Double?
-  var cmEnabled: Bool
-  var legs: Int
+  public var id: Int
+  public var name, localizedName: String
+  public var primaryAttr: PrimaryAttr
+  public var attackType: AttackType
+  public var roles: [Role]
+  public var img, icon: String
+  public var baseHealth: Int
+  public var baseHealthRegen: Double?
+  public var baseMana: Int
+  public var baseManaRegen, baseArmor: Double
+  public var baseMr, baseAttackMin, baseAttackMax, baseStr: Int
+  public var baseAgi, baseInt: Int
+  public var strGain, agiGain, intGain: Double
+  public var attackRange, projectileSpeed: Int
+  public var attackRate: Double
+  public var moveSpeed: Int
+  public var turnRate: Double?
+  public var cmEnabled: Bool
+  public var legs: Int
 
   enum CodingKeys: String, CodingKey {
     case id, name

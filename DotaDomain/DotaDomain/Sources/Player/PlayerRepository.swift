@@ -15,7 +15,9 @@ final class PlayerRepository {
     )
   }
 
-  func player() -> Player? {
+  public init() {}
+
+  public  func player() -> Player? {
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
 
@@ -23,7 +25,7 @@ final class PlayerRepository {
       .decode(Player.self, decoder: decoder)
   }
 
-  func fetchPlayer() async throws -> Player {
+  public func fetchPlayer() async throws -> Player {
     let request = playerResource.toRequest(environment.apiBaseURL)
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
@@ -37,7 +39,7 @@ final class PlayerRepository {
     return player
   }
 
-  func rankImage(for player: Player) -> RankIcon? {
+  public func rankImage(for player: Player) -> RankIcon? {
     if let leaderBank = player.leaderboardRank {
       if leaderBank <= 10 { // top 10 and top 100 positions have different icons
         return RankIcon(

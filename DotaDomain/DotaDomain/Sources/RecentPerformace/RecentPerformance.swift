@@ -12,7 +12,6 @@ public struct RecentPerformance {
   public let heroHeal: Value
   public let towerDmg: Value
 
-
   public struct Value {
     public let average: Double
     public let max: Int
@@ -21,6 +20,32 @@ public struct RecentPerformance {
     static var empty: Value {
       Value(average: 0, max: 0, maxHero: nil)
     }
+  }
+
+  public init(
+    numberOfGames: Int,
+    winRate: Double,
+    kills: RecentPerformance.Value,
+    deaths: RecentPerformance.Value,
+    assists: RecentPerformance.Value,
+    gpm: RecentPerformance.Value,
+    xpm: RecentPerformance.Value,
+    lastHits: RecentPerformance.Value,
+    heroDmg: RecentPerformance.Value,
+    heroHeal: RecentPerformance.Value,
+    towerDmg: RecentPerformance.Value
+  ) {
+    self.numberOfGames = numberOfGames
+    self.winRate = winRate
+    self.kills = kills
+    self.deaths = deaths
+    self.assists = assists
+    self.gpm = gpm
+    self.xpm = xpm
+    self.lastHits = lastHits
+    self.heroDmg = heroDmg
+    self.heroHeal = heroHeal
+    self.towerDmg = towerDmg
   }
 
   public static var empty: RecentPerformance {
