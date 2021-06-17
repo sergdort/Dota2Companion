@@ -13,16 +13,18 @@ final class HeroRepository {
   public func heroes() -> [Hero] {
     do {
       return try cache.loadFile(path: path)
-        .decode([Hero].self, decoder: JSONDecoder())
+        .decode(Heroes.self, decoder: JSONDecoder())
+        .values
+        .sorted(by: Hero.orderedById)
     } catch {
       return []
     }
   }
 
   public func fetchHeroes() async throws -> [Hero] {
-    let heroes = try await session.fetch([Hero].self, request: URLRequest(url: url), decoder: JSONDecoder()
+    let heroes = try await session.fetch(Heroes.self, request: URLRequest(url: url), decoder: JSONDecoder()
     )
     try cache.persist(item: heroes, encoder: JSONEncoder(), path: path)
-    return heroes
+    return heroes.values.sorted(by: Hero.orderedById)
   }
 }

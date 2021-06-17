@@ -8,6 +8,7 @@
 import SwiftUI
 import UIKit
 import DotaDomain
+import CombineFeedback
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
@@ -19,7 +20,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     // Create the SwiftUI view that provides the window contents.
     CurrentUser.currentUserId = 118113925
-    let contentView = RootView()
+    let contentView = RootView(
+      store: Store(
+        initial: AppState(),
+        feedbacks: [appFeedbacks],
+        reducer: appReducer,
+        dependency: AppDependency()
+      )
+    )
 
     // Use a UIHostingController as window root view controller.
     if let windowScene = scene as? UIWindowScene {

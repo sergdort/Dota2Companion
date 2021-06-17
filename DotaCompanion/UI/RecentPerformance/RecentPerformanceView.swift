@@ -125,7 +125,16 @@ extension Optional where Wrapped == Hero {
   func iconPublisher(imageFetcher: ImageFetcher) -> AnyPublisher<UIImage, Never> {
     if let hero = self {
       let iconPath = hero.icon.hasPrefix("/") ? String(hero.icon.dropFirst()) : hero.icon
-      return imageFetcher.image(for: ENV.prod.assetsBaseURL.appendingPathComponent(iconPath))
+      return imageFetcher.image(
+        for: ENV.prod.assetsBaseURL.appendingPathComponent(iconPath)
+      )
+      .catch { _ in
+        imageFetcher.image(
+          for: ENV.prod.heroesAssetsBaseURL
+            .appendingPathComponent("\(hero.id)_icon.png")
+        )
+      }
+      .ignoreError()
     }
     return Empty().eraseToAnyPublisher()
   }

@@ -61,12 +61,14 @@ struct PlayerRankView: View {
       if let rankIcon = rankIcon {
         ZStack {
           AsyncImage(
-            source: imageFetcher.image(for: rankIcon.medal),
+            source: imageFetcher.image(for: rankIcon.medal)
+              .ignoreError(),
             placeholder: rankPlaceholder
           )
           if let start = rankIcon.stars {
             AsyncImage(
-              source: imageFetcher.image(for: start),
+              source: imageFetcher.image(for: start)
+                .ignoreError(),
               placeholder: starsPlaceholder
             )
           }

@@ -14,6 +14,8 @@ public final class WinsStatsRepository {
     )
   }
 
+  public init() {}
+
   public func winLose() -> WinsStats? {
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase

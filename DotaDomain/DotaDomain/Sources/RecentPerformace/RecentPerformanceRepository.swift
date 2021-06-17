@@ -1,8 +1,10 @@
 import Combine
 
-final class RecentPerformanceRepository {
+public final class RecentPerformanceRepository {
   private let matchesRepo = MatchesRepository()
   private let heroesRepo = HeroRepository()
+
+  public init() {}
 
   public func recentPerformance() -> RecentPerformance? {
     let matches = matchesRepo.recentMatches()

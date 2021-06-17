@@ -4,18 +4,7 @@ import CombineFeedback
 import DotaDomain
 import DotaCore
 
-enum PlayerOverview {
-  static func makeRootView() -> some View {
-    RootView(
-      store: Store(
-        initial: State(),
-        feedbacks: [],
-        reducer: .init(reduce: Self.reduce),
-        dependency: ()
-      )
-    )
-  }
-
+enum PlayerUI {
   struct State: Equatable {
     var player = Player(
       rankTier: 0,
@@ -38,6 +27,15 @@ enum PlayerOverview {
     case didFail(CoreError)
   }
 
+  struct Dependency {
+    let player: PlayerRepository
+    let winStats: WinsStatsRepository
+  }
+
+  static var reducer: Reducer<State, Event> {
+    Reducer(reduce: Self.reduce(state:event:))
+  }
+
   private static func reduce(state: inout State, event: Event) {
     switch event {
     case let .didLoad(player, rankIcon, winStats):
@@ -50,16 +48,46 @@ enum PlayerOverview {
     }
   }
 
+  static var feedbacks: Feedback<State, Event, Dependency> {
+    .combine(
+      Feedback.whenInitialized(maybe: { dependency in
+        if let player = dependency.player.player(),
+           let winsStats = dependency.winStats.winLose()
+        {
+          return Event.didLoad(
+            player,
+            dependency.player.rankImage(for: player),
+            winsStats
+          )
+        }
+        return nil
+      }),
+      Feedback.predicate(predicate: \.isLoading) { _, dependency in
+        do {
+          async let player = try await dependency.player.fetchPlayer()
+          async let winStats = try await dependency.winStats.fetchWinLoses()
+          let playerSync = try await player
+          let rankIcon = dependency.player.rankImage(for: playerSync)
+
+          return Event.didLoad(playerSync, rankIcon, try await winStats)
+        } catch {
+          return Event.didFail(CoreError.other(""))
+        }
+      }
+    )
+  }
+
   struct RootView: View {
     @Environment(\.imageFetcher)
     private var imageFetcher
-    let store: Store<PlayerOverview.State, PlayerOverview.Event>
+    let store: Store<PlayerUI.State, PlayerUI.Event>
 
     public var body: some View {
       WithViewContext(store: store) { context in
         PlayerView(
           image: (
-            imageFetcher.image(for: context.player.profile.avatarmedium),
+            imageFetcher.image(for: context.player.profile.avatarmedium)
+              .ignoreError(),
             nil
           ),
           rankIcon: context.rankIcon,

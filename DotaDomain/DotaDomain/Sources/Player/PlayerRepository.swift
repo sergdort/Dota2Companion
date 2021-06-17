@@ -2,7 +2,7 @@ import Combine
 import Foundation
 import DotaCore
 
-final class PlayerRepository {
+public final class PlayerRepository {
   private let playerId = CurrentUser.currentUserId
   private let environment: ENV = .prod
   private let session = URLSession.shared

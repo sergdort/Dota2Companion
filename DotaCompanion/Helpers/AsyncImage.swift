@@ -38,8 +38,8 @@ final class ImageFetcher {
   private let cache = NSCache<NSURL, UIImage>()
   private let repo = FileCache(name: "ImageFetcher")
 
-  func image(for url: URL) -> AnyPublisher<UIImage, Never> {
-    return Deferred { () -> AnyPublisher<UIImage, Never> in
+  func image(for url: URL) -> AnyPublisher<UIImage, Error> {
+    return Deferred { () -> AnyPublisher<UIImage, Error> in
       if let image = self.cache.object(forKey: url as NSURL) {
         return Result.Publisher(image).eraseToAnyPublisher()
       } else if let data = try? self.repo.loadFile(path: url.path), let image = UIImage(data: data) {
@@ -52,12 +52,20 @@ final class ImageFetcher {
         .handleEvents(receiveOutput: { data in
           try? self.repo.persist(data: data, path: url.path)
         })
-        .compactMap(UIImage.init(data:))
+        .tryMap { data -> UIImage in
+          if let image = UIImage(data: data) {
+            return image
+          }
+          throw CoreError.parser("Could not create image from \(url)")
+        }
         .receive(on: DispatchQueue.main)
         .handleEvents(receiveOutput: { image in
           self.cache.setObject(image, forKey: url as NSURL)
         })
-        .ignoreError()
+        .mapError { error in
+          error as Error
+        }
+        .eraseToAnyPublisher()
     }
     .eraseToAnyPublisher()
   }
