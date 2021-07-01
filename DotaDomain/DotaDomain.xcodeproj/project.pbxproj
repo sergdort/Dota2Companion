@@ -11,8 +11,12 @@
 		2518F22F26767D13008ABAA7 /* ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2518F22E26767D13008ABAA7 /* ENV.swift */; };
 		2518F23726769608008ABAA7 /* WinsStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2518F23626769608008ABAA7 /* WinsStats.swift */; };
 		2518F23926769626008ABAA7 /* WinsStatsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2518F23826769626008ABAA7 /* WinsStatsRepository.swift */; };
-		254B4DED2676768400653BB8 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DDC2676768400653BB8 /* Match.swift */; };
-		254B4DEE2676768400653BB8 /* MatchesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DDD2676768400653BB8 /* MatchesRepository.swift */; };
+		252C574D268283C400B0C6D3 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C574C268283C400B0C6D3 /* Match.swift */; };
+		252C575026828C0D00B0C6D3 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C574F26828C0D00B0C6D3 /* Item.swift */; };
+		252C575226828CC600B0C6D3 /* MatchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C575126828CC600B0C6D3 /* MatchRepository.swift */; };
+		252C575426828E6100B0C6D3 /* ItemsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252C575326828E6100B0C6D3 /* ItemsRepository.swift */; };
+		254B4DED2676768400653BB8 /* RecentMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DDC2676768400653BB8 /* RecentMatch.swift */; };
+		254B4DEE2676768400653BB8 /* RecentMatchesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DDD2676768400653BB8 /* RecentMatchesRepository.swift */; };
 		254B4DEF2676768400653BB8 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DDF2676768400653BB8 /* CurrentUser.swift */; };
 		254B4DF12676768400653BB8 /* RecentPerformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DE22676768400653BB8 /* RecentPerformance.swift */; };
 		254B4DF22676768400653BB8 /* RecentPerformanceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DE32676768400653BB8 /* RecentPerformanceRepository.swift */; };
@@ -20,16 +24,34 @@
 		254B4DF52676768400653BB8 /* HeroRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DE72676768400653BB8 /* HeroRepository.swift */; };
 		254B4DF62676768400653BB8 /* PlayerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DE92676768400653BB8 /* PlayerRepository.swift */; };
 		254B4DF92676768400653BB8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DEC2676768400653BB8 /* Player.swift */; };
+		259F112626828F53006E7B1C /* Items.json in Resources */ = {isa = PBXBuildFile; fileRef = 259F112526828F53006E7B1C /* Items.json */; };
+		259F112826828F8C006E7B1C /* ItemIds.json in Resources */ = {isa = PBXBuildFile; fileRef = 259F112726828F8C006E7B1C /* ItemIds.json */; };
+		259F11312682919B006E7B1C /* DotaDomain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254B4DD02676762200653BB8 /* DotaDomain.framework */; };
+		259F1138268291E6006E7B1C /* ItemsRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259F1137268291E6006E7B1C /* ItemsRepositoryTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		259F11322682919B006E7B1C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 254B4DC72676762200653BB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 254B4DCF2676762200653BB8;
+			remoteInfo = DotaDomain;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2518F22226767C9E008ABAA7 /* DotaCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DotaCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2518F22E26767D13008ABAA7 /* ENV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENV.swift; sourceTree = "<group>"; };
 		2518F23626769608008ABAA7 /* WinsStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinsStats.swift; sourceTree = "<group>"; };
 		2518F23826769626008ABAA7 /* WinsStatsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinsStatsRepository.swift; sourceTree = "<group>"; };
+		252C574C268283C400B0C6D3 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		252C574F26828C0D00B0C6D3 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		252C575126828CC600B0C6D3 /* MatchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRepository.swift; sourceTree = "<group>"; };
+		252C575326828E6100B0C6D3 /* ItemsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsRepository.swift; sourceTree = "<group>"; };
 		254B4DD02676762200653BB8 /* DotaDomain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DotaDomain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		254B4DDC2676768400653BB8 /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
-		254B4DDD2676768400653BB8 /* MatchesRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesRepository.swift; sourceTree = "<group>"; };
+		254B4DDC2676768400653BB8 /* RecentMatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentMatch.swift; sourceTree = "<group>"; };
+		254B4DDD2676768400653BB8 /* RecentMatchesRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentMatchesRepository.swift; sourceTree = "<group>"; };
 		254B4DDF2676768400653BB8 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		254B4DE22676768400653BB8 /* RecentPerformance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPerformance.swift; sourceTree = "<group>"; };
 		254B4DE32676768400653BB8 /* RecentPerformanceRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPerformanceRepository.swift; sourceTree = "<group>"; };
@@ -37,6 +59,10 @@
 		254B4DE72676768400653BB8 /* HeroRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroRepository.swift; sourceTree = "<group>"; };
 		254B4DE92676768400653BB8 /* PlayerRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerRepository.swift; sourceTree = "<group>"; };
 		254B4DEC2676768400653BB8 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		259F112526828F53006E7B1C /* Items.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Items.json; sourceTree = "<group>"; };
+		259F112726828F8C006E7B1C /* ItemIds.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ItemIds.json; sourceTree = "<group>"; };
+		259F112D2682919B006E7B1C /* DotaDomainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotaDomainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		259F1137268291E6006E7B1C /* ItemsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsRepositoryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +71,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2518F22326767C9E008ABAA7 /* DotaCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		259F112A2682919B006E7B1C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				259F11312682919B006E7B1C /* DotaDomain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,10 +102,31 @@
 			path = WinsStats;
 			sourceTree = "<group>";
 		};
+		252C574B2682832A00B0C6D3 /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				252C574C268283C400B0C6D3 /* Match.swift */,
+				252C575126828CC600B0C6D3 /* MatchRepository.swift */,
+			);
+			path = Match;
+			sourceTree = "<group>";
+		};
+		252C574E26828BF500B0C6D3 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				252C574F26828C0D00B0C6D3 /* Item.swift */,
+				252C575326828E6100B0C6D3 /* ItemsRepository.swift */,
+				259F112526828F53006E7B1C /* Items.json */,
+				259F112726828F8C006E7B1C /* ItemIds.json */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
 		254B4DC62676762200653BB8 = {
 			isa = PBXGroup;
 			children = (
 				254B4DD22676762200653BB8 /* DotaDomain */,
+				259F112E2682919B006E7B1C /* DotaDomainTests */,
 				254B4DD12676762200653BB8 /* Products */,
 				2518F22126767C9E008ABAA7 /* Frameworks */,
 			);
@@ -81,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				254B4DD02676762200653BB8 /* DotaDomain.framework */,
+				259F112D2682919B006E7B1C /* DotaDomainTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,8 +153,10 @@
 			isa = PBXGroup;
 			children = (
 				2518F22E26767D13008ABAA7 /* ENV.swift */,
+				252C574E26828BF500B0C6D3 /* Item */,
+				252C574B2682832A00B0C6D3 /* Match */,
 				2518F23526768D6D008ABAA7 /* WinsStats */,
-				254B4DDB2676768400653BB8 /* Match */,
+				254B4DDB2676768400653BB8 /* RecentMatch */,
 				254B4DDE2676768400653BB8 /* User */,
 				254B4DE02676768400653BB8 /* RecentPerformace */,
 				254B4DE52676768400653BB8 /* Hero */,
@@ -107,13 +165,13 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		254B4DDB2676768400653BB8 /* Match */ = {
+		254B4DDB2676768400653BB8 /* RecentMatch */ = {
 			isa = PBXGroup;
 			children = (
-				254B4DDC2676768400653BB8 /* Match.swift */,
-				254B4DDD2676768400653BB8 /* MatchesRepository.swift */,
+				254B4DDC2676768400653BB8 /* RecentMatch.swift */,
+				254B4DDD2676768400653BB8 /* RecentMatchesRepository.swift */,
 			);
-			path = Match;
+			path = RecentMatch;
 			sourceTree = "<group>";
 		};
 		254B4DDE2676768400653BB8 /* User */ = {
@@ -151,6 +209,14 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
+		259F112E2682919B006E7B1C /* DotaDomainTests */ = {
+			isa = PBXGroup;
+			children = (
+				259F1137268291E6006E7B1C /* ItemsRepositoryTests.swift */,
+			);
+			path = DotaDomainTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -184,6 +250,24 @@
 			productReference = 254B4DD02676762200653BB8 /* DotaDomain.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		259F112C2682919B006E7B1C /* DotaDomainTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 259F11342682919B006E7B1C /* Build configuration list for PBXNativeTarget "DotaDomainTests" */;
+			buildPhases = (
+				259F11292682919B006E7B1C /* Sources */,
+				259F112A2682919B006E7B1C /* Frameworks */,
+				259F112B2682919B006E7B1C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				259F11332682919B006E7B1C /* PBXTargetDependency */,
+			);
+			name = DotaDomainTests;
+			productName = DotaDomainTests;
+			productReference = 259F112D2682919B006E7B1C /* DotaDomainTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -191,10 +275,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					254B4DCF2676762200653BB8 = {
 						CreatedOnToolsVersion = 13.0;
+					};
+					259F112C2682919B006E7B1C = {
+						CreatedOnToolsVersion = 13.0;
+						LastSwiftMigration = 1300;
 					};
 				};
 			};
@@ -214,12 +303,22 @@
 			projectRoot = "";
 			targets = (
 				254B4DCF2676762200653BB8 /* DotaDomain */,
+				259F112C2682919B006E7B1C /* DotaDomainTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		254B4DCE2676762200653BB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				259F112626828F53006E7B1C /* Items.json in Resources */,
+				259F112826828F8C006E7B1C /* ItemIds.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		259F112B2682919B006E7B1C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -233,22 +332,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				252C575226828CC600B0C6D3 /* MatchRepository.swift in Sources */,
 				2518F23926769626008ABAA7 /* WinsStatsRepository.swift in Sources */,
-				254B4DED2676768400653BB8 /* Match.swift in Sources */,
+				252C575426828E6100B0C6D3 /* ItemsRepository.swift in Sources */,
+				254B4DED2676768400653BB8 /* RecentMatch.swift in Sources */,
 				2518F22F26767D13008ABAA7 /* ENV.swift in Sources */,
 				254B4DF12676768400653BB8 /* RecentPerformance.swift in Sources */,
+				252C575026828C0D00B0C6D3 /* Item.swift in Sources */,
 				2518F23726769608008ABAA7 /* WinsStats.swift in Sources */,
 				254B4DF42676768400653BB8 /* Hero.swift in Sources */,
 				254B4DF92676768400653BB8 /* Player.swift in Sources */,
 				254B4DF62676768400653BB8 /* PlayerRepository.swift in Sources */,
 				254B4DF22676768400653BB8 /* RecentPerformanceRepository.swift in Sources */,
+				252C574D268283C400B0C6D3 /* Match.swift in Sources */,
 				254B4DF52676768400653BB8 /* HeroRepository.swift in Sources */,
 				254B4DEF2676768400653BB8 /* CurrentUser.swift in Sources */,
-				254B4DEE2676768400653BB8 /* MatchesRepository.swift in Sources */,
+				254B4DEE2676768400653BB8 /* RecentMatchesRepository.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		259F11292682919B006E7B1C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				259F1138268291E6006E7B1C /* ItemsRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		259F11332682919B006E7B1C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 254B4DCF2676762200653BB8 /* DotaDomain */;
+			targetProxy = 259F11322682919B006E7B1C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		254B4DD52676762200653BB8 /* Debug */ = {
@@ -427,6 +546,49 @@
 			};
 			name = Release;
 		};
+		259F11352682919B006E7B1C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergdort.DotaDomainTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		259F11362682919B006E7B1C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergdort.DotaDomainTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -444,6 +606,15 @@
 			buildConfigurations = (
 				254B4DD82676762200653BB8 /* Debug */,
 				254B4DD92676762200653BB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		259F11342682919B006E7B1C /* Build configuration list for PBXNativeTarget "DotaDomainTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				259F11352682919B006E7B1C /* Debug */,
+				259F11362682919B006E7B1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

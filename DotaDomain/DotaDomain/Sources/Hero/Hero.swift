@@ -112,41 +112,6 @@ public struct Hero: Equatable, Codable {
     case cmEnabled = "cm_enabled"
     case legs
   }
-
-  static var fixture: Hero {
-    return Hero(
-      id: 0,
-      name: "",
-      localizedName: "",
-      primaryAttr: .agi,
-      attackType: .melee,
-      roles: [],
-      img: "",
-      icon: "",
-      baseHealth: 0,
-      baseHealthRegen: 0,
-      baseMana: 0,
-      baseManaRegen: 0,
-      baseArmor: 0,
-      baseMr: 0,
-      baseAttackMin: 0,
-      baseAttackMax: 0,
-      baseStr: 0,
-      baseAgi: 0,
-      baseInt: 0,
-      strGain: 0,
-      agiGain: 0,
-      intGain: 0,
-      attackRange: 0,
-      projectileSpeed: 0,
-      attackRate: 0,
-      moveSpeed: 0,
-      turnRate: 0,
-      cmEnabled: false,
-      legs: 0
-    )
-  }
-
   static func orderedById(lhs: Hero, rhs: Hero) -> Bool {
     return lhs.id < rhs.id
   }
@@ -176,3 +141,43 @@ public enum Role: String, Codable {
 }
 
 typealias Heroes = [String: Hero]
+
+#if DEBUG
+
+extension Hero {
+  public static func fixture() -> Hero {
+    Hero(
+      id: 1,
+      name: "npc_dota_hero_antimage",
+      localizedName: "Anti-Mage",
+      primaryAttr: .agi,
+      attackType: .melee,
+      roles: [.carry, .escape, .nuker],
+      img: "/apps/dota2/images/heroes/antimage_full.png",
+      icon: "/apps/dota2/images/heroes/antimage_icon.png",
+      baseHealth: 200,
+      baseHealthRegen: 0.25,
+      baseMana: 75,
+      baseManaRegen: 0,
+      baseArmor: 0,
+      baseMr: 25,
+      baseAttackMin: 29,
+      baseAttackMax: 33,
+      baseStr: 23,
+      baseAgi: 24,
+      baseInt: 12,
+      strGain: 1.3,
+      agiGain: 2.8,
+      intGain: 1.8,
+      attackRange: 150,
+      projectileSpeed: 0,
+      attackRate: 1.4,
+      moveSpeed: 310,
+      turnRate: nil,
+      cmEnabled: true,
+      legs: 2
+    )
+  }
+}
+
+#endif

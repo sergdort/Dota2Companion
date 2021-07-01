@@ -139,3 +139,12 @@ extension Optional where Wrapped == Hero {
     return Empty().eraseToAnyPublisher()
   }
 }
+
+extension Hero {
+  func imagePublisher(imageFetcher: ImageFetcher) -> AnyPublisher<UIImage, Never> {
+    imageFetcher.image(
+      for: ENV.prod.assetsBaseURL.appendingPathComponent(img)
+    )
+    .ignoreError()
+  }
+}

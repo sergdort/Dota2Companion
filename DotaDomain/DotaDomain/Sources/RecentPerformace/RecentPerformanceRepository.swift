@@ -1,7 +1,7 @@
 import Combine
 
 public final class RecentPerformanceRepository {
-  private let matchesRepo = MatchesRepository()
+  private let matchesRepo = RecentMatchesRepository()
   private let heroesRepo = HeroRepository()
 
   public init() {}
@@ -21,7 +21,7 @@ public final class RecentPerformanceRepository {
 
   private func makeRecentPerformance(
     heroes: [Hero],
-    matches: [Match]
+    matches: [RecentMatch]
   ) -> RecentPerformance {
     if matches.isEmpty {
       return .empty

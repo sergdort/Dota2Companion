@@ -1,27 +1,16 @@
 import Foundation
 
-public struct Match: Equatable, Codable {
-  public var matchID, playerSlot: Int
-  public var radiantWin: Bool
-  public var duration, gameMode, lobbyType, heroID: Int
-  public var startTime: Int
-  public var version: Int?
-  public var kills, deaths, assists: Int
-  public var skill: Int?
-  public var xpPerMin, goldPerMin, heroDamage, towerDamage: Int
-  public var heroHealing, lastHits: Int
-  public var lane, laneRole: Int?
-  public var isRoaming: Bool?
-  public var cluster, leaverStatus: Int
-  public var partySize: Int?
-
-  public var isRadiant: Bool {
-    playerSlot < 128
-  }
-
-  public var isWin: Bool {
-    isRadiant == radiantWin
-  }
+public struct Match: Codable {
+  var matchID, playerSlot: Int
+  var radiantWin: Bool
+  var duration, gameMode, lobbyType, startTime: Int
+  var heroID: Int
+  var version: Int?
+  var kills, deaths, assists: Int
+  var skill: Int?
+  var leaverStatus: Int
+  var partySize: Int?
+  var item0, item1, item2, item3, item4, item5: Int?
 
   public init(
     matchID: Int,
@@ -30,25 +19,21 @@ public struct Match: Equatable, Codable {
     duration: Int,
     gameMode: Int,
     lobbyType: Int,
-    heroID: Int,
     startTime: Int,
+    heroID: Int,
     version: Int? = nil,
     kills: Int,
     deaths: Int,
     assists: Int,
     skill: Int? = nil,
-    xpPerMin: Int,
-    goldPerMin: Int,
-    heroDamage: Int,
-    towerDamage: Int,
-    heroHealing: Int,
-    lastHits: Int,
-    lane: Int? = nil,
-    laneRole: Int? = nil,
-    isRoaming: Bool? = nil,
-    cluster: Int,
     leaverStatus: Int,
-    partySize: Int? = nil
+    partySize: Int? = nil,
+    item0: Int? = nil,
+    item1: Int? = nil,
+    item2: Int? = nil,
+    item3: Int? = nil,
+    item4: Int? = nil,
+    item5: Int? = nil
   ) {
     self.matchID = matchID
     self.playerSlot = playerSlot
@@ -56,25 +41,21 @@ public struct Match: Equatable, Codable {
     self.duration = duration
     self.gameMode = gameMode
     self.lobbyType = lobbyType
-    self.heroID = heroID
     self.startTime = startTime
+    self.heroID = heroID
     self.version = version
     self.kills = kills
     self.deaths = deaths
     self.assists = assists
     self.skill = skill
-    self.xpPerMin = xpPerMin
-    self.goldPerMin = goldPerMin
-    self.heroDamage = heroDamage
-    self.towerDamage = towerDamage
-    self.heroHealing = heroHealing
-    self.lastHits = lastHits
-    self.lane = lane
-    self.laneRole = laneRole
-    self.isRoaming = isRoaming
-    self.cluster = cluster
     self.leaverStatus = leaverStatus
     self.partySize = partySize
+    self.item0 = item0
+    self.item1 = item1
+    self.item2 = item2
+    self.item3 = item3
+    self.item4 = item4
+    self.item5 = item5
   }
 
   enum CodingKeys: String, CodingKey {
@@ -84,24 +65,46 @@ public struct Match: Equatable, Codable {
     case duration
     case gameMode = "game_mode"
     case lobbyType = "lobby_type"
-    case heroID = "hero_id"
     case startTime = "start_time"
+    case heroID = "hero_id"
     case version, kills, deaths, assists, skill
-    case xpPerMin = "xp_per_min"
-    case goldPerMin = "gold_per_min"
-    case heroDamage = "hero_damage"
-    case towerDamage = "tower_damage"
-    case heroHealing = "hero_healing"
-    case lastHits = "last_hits"
-    case lane
-    case laneRole = "lane_role"
-    case isRoaming = "is_roaming"
-    case cluster
     case leaverStatus = "leaver_status"
     case partySize = "party_size"
-  }
-
-  public static func sortByKillsDesc(lhs: Match, rhs: Match) -> Bool {
-    return lhs.kills > rhs.kills
+    case item0 = "item_0"
+    case item1 = "item_1"
+    case item2 = "item_2"
+    case item3 = "item_3"
+    case item4 = "item_4"
+    case item5 = "item_5"
   }
 }
+
+#if DEBUG
+extension Match {
+  public static func fixture() -> Match {
+    Match(
+      matchID: 6054173905,
+      playerSlot: 3,
+      radiantWin: true,
+      duration: 2533,
+      gameMode: 22,
+      lobbyType: 7,
+      startTime: 1624390061,
+      heroID: 96,
+      version: 21,
+      kills: 3,
+      deaths: 2,
+      assists: 24,
+      skill: nil,
+      leaverStatus: 0,
+      partySize: 1,
+      item0: 114,
+      item1: 73,
+      item2: 1,
+      item3: 267,
+      item4: 131,
+      item5: 63
+    )
+  }
+}
+#endif
