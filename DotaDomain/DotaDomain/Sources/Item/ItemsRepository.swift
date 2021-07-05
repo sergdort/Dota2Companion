@@ -27,4 +27,10 @@ public final class ItemsRepository {
       fatalError("Could not initialize, Error, \(error)")
     }
   }
+
+  public func item(for id: Int) -> Item? {
+    return idToKeys["\(id)"].flatMap {
+      keyToItems[$0]
+    }
+  }
 }

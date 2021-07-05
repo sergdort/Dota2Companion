@@ -7,6 +7,7 @@ enum Colors: String {
   case win
   case lose
   case gold
+  case lime
   
   private final class BundleFinder {}
   

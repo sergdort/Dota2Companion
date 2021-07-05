@@ -1,16 +1,28 @@
 import Foundation
 
 public struct Match: Codable {
-  var matchID, playerSlot: Int
-  var radiantWin: Bool
-  var duration, gameMode, lobbyType, startTime: Int
-  var heroID: Int
-  var version: Int?
-  var kills, deaths, assists: Int
-  var skill: Int?
-  var leaverStatus: Int
-  var partySize: Int?
-  var item0, item1, item2, item3, item4, item5: Int?
+  public var matchID, playerSlot: Int
+  public var radiantWin: Bool
+  public var duration, gameMode, lobbyType, startTime: Int
+  public var heroID: Int
+  public var version: Int?
+  public var kills, deaths, assists: Int
+  public var skill: Int?
+  public var leaverStatus: Int
+  public var partySize: Int?
+  public var item0, item1, item2, item3, item4, item5: Int?
+
+  public var isWin: Bool {
+    isRadiant == radiantWin
+  }
+
+  public var isRadiant: Bool {
+    playerSlot < 128
+  }
+
+  public var itemsIds: [Int] {
+    return [item0, item1, item2, item3, item4, item5].compactMap { $0 }
+  }
 
   public init(
     matchID: Int,

@@ -1,20 +1,20 @@
 import Foundation
 
 public struct Item: Codable {
-  var hint: [String]?
-  var id: Int
-  var img: String
-  var dname: String?
-  var qual: String?
-  var cost: Int?
-  var notes: String
-  var attrib: [Attrib]
-  var mc: Int?
-  var cd: Int?
-  var lore: String
-  var components: [String]?
-  var charges: Int?
-  var created: Bool
+  public var hint: [String]?
+  public var id: Int
+  public var img: String
+  public var dname: String?
+  public var qual: String?
+  public var cost: Int?
+  public var notes: String
+  public var attrib: [Attrib]
+  public var mc: Int?
+  public var cd: Int?
+  public var lore: String
+  public var components: [String]?
+  public var charges: Int?
+  public var created: Bool
 
   public init(
     hint: [String],
@@ -53,3 +53,5 @@ public struct Attrib: Codable {
   public var key, header, value: String
   public var footer: String?
 }
+
+extension Item: Identifiable {}

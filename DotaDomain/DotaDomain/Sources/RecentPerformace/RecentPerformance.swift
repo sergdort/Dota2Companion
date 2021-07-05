@@ -20,6 +20,12 @@ public struct RecentPerformance: Equatable {
     static var empty: Value {
       Value(average: 0, max: 0, maxHero: nil)
     }
+
+    public init(average: Double, max: Int, maxHero: Hero?) {
+      self.average = average
+      self.max = max
+      self.maxHero = maxHero
+    }
   }
 
   public init(

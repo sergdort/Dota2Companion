@@ -20,7 +20,7 @@ public struct RecentPerformanceView: View {
       )
       HStack {
         WinRateView(winRate: Int(winRate * 100))
-        MatchStatView(
+        RecentPerformanceStatView(
           name: "KILLS",
           averageValue: kills.average.toInt,
           maxValue: kills.max,
@@ -30,7 +30,7 @@ public struct RecentPerformanceView: View {
             nil
           )
         )
-        MatchStatView(
+        RecentPerformanceStatView(
           name: "DEATHS",
           averageValue: 3,
           maxValue: 7,
@@ -40,7 +40,7 @@ public struct RecentPerformanceView: View {
             nil
           )
         )
-        MatchStatView(
+        RecentPerformanceStatView(
           name: "ASSISTS",
           averageValue: 14,
           maxValue: 28,
@@ -85,7 +85,7 @@ struct WinRateView: View {
   }
 }
 
-struct MatchStatView: View {
+struct RecentPerformanceStatView: View {
   var name: String
   var averageValue: Int
   var maxValue: Int
@@ -148,3 +148,21 @@ extension Hero {
     .ignoreError()
   }
 }
+
+#if DEBUG
+import SwiftUI
+
+struct RecentPerformanceView_Previews: PreviewProvider {
+  static var previews: some View {
+    RecentPerformanceView(
+      winRate: 0.55,
+      kills: RecentPerformance.Value(average: 10, max: 22, maxHero: .fixture()),
+      deaths: RecentPerformance.Value(average: 3, max: 10, maxHero: .fixture()),
+      assists: RecentPerformance.Value(average: 7, max: 17, maxHero: .fixture())
+    )
+    .background(Colors.backgroundFront)
+  }
+}
+
+#endif
+
