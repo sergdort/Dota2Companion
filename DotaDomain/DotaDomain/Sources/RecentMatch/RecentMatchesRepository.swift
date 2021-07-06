@@ -2,7 +2,7 @@ import Combine
 import Foundation
 import DotaCore
 
-public final class RecentMatchesRepository {
+final class RecentMatchesRepository {
   private let playerId = CurrentUser.currentUserId
   private let environment: ENV = .prod
   private let session = URLSession.shared
@@ -15,14 +15,14 @@ public final class RecentMatchesRepository {
     )
   }
 
-  public init() {}
+  init() {}
 
-  public func recentMatches() -> [RecentMatch] {
-    (try? cache.loadFile(path: resource.path + ".json")
-      .decode([RecentMatch].self, decoder: JSONDecoder())) ?? []
+  func recentMatches() -> [RecentMatch]? {
+    try? cache.loadFile(path: resource.path + ".json")
+      .decode([RecentMatch].self, decoder: JSONDecoder())
   }
 
-  public func fetchRecentMatches() async throws -> [RecentMatch] {
+  func fetchRecentMatches() async throws -> [RecentMatch] {
     let request = resource.toRequest(environment.apiBaseURL)
     let matches = try await session.fetch([RecentMatch].self, request: request, decoder: JSONDecoder())
     try cache.persist(item: matches, encoder: JSONEncoder(), path: resource.path + ".json")

@@ -3,28 +3,21 @@ import Combine
 import DotaCore
 
 final class HeroRepository {
-  private let url = URL(string: "https://raw.githubusercontent.com/odota/dotaconstants/master/build/heroes.json")!
-  private let session = URLSession.shared
-  private let cache = FileCache(name: "HeroRepository")
-  private let path = "heroes.json"
+  private let bundle = Bundle(for: ItemsRepository.self)
+  let heroes: [Hero]
 
-  public init() {}
-
-  public func heroes() -> [Hero] {
+  init() {
     do {
-      return try cache.loadFile(path: path)
-        .decode(Heroes.self, decoder: JSONDecoder())
-        .values
-        .sorted(by: Hero.orderedById)
+      self.heroes = try bundle.url(forResource: "Heroes", withExtension: "json")
+        .map {
+          try Data(contentsOf: $0)
+        }.map {
+          try $0.decode(Heroes.self, decoder: JSONDecoder())
+        }
+        .map(\.values)?
+        .sorted(by: Hero.orderedById) ?? []
     } catch {
-      return []
+      fatalError("Failed to parse \(error)")
     }
-  }
-
-  public func fetchHeroes() async throws -> [Hero] {
-    let heroes = try await session.fetch(Heroes.self, request: URLRequest(url: url), decoder: JSONDecoder()
-    )
-    try cache.persist(item: heroes, encoder: JSONEncoder(), path: path)
-    return heroes.values.sorted(by: Hero.orderedById)
   }
 }

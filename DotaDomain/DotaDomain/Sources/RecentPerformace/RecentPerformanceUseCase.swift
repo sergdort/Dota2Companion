@@ -1,22 +1,20 @@
 import Combine
 
-public final class RecentPerformanceRepository {
+public final class RecentPerformanceUseCase {
   private let matchesRepo = RecentMatchesRepository()
   private let heroesRepo = HeroRepository()
 
   public init() {}
 
   public func recentPerformance() -> RecentPerformance? {
-    let matches = matchesRepo.recentMatches()
-    let heroes = heroesRepo.heroes()
-    return makeRecentPerformance(heroes: heroes, matches: matches)
+    return matchesRepo.recentMatches().map {
+      makeRecentPerformance(heroes: heroesRepo.heroes, matches: $0)
+    }
   }
 
   public func fetchRecentPerformance() async throws -> RecentPerformance {
-    async let matches = try matchesRepo.fetchRecentMatches()
-    async let heroes = try heroesRepo.fetchHeroes()
-
-    return await makeRecentPerformance(heroes: try heroes, matches: try matches)
+    let matches = try await matchesRepo.fetchRecentMatches()
+    return makeRecentPerformance(heroes: heroesRepo.heroes, matches: matches)
   }
 
   private func makeRecentPerformance(

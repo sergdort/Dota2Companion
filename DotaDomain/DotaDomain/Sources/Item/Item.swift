@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Item: Codable {
+public struct Item: Codable, Equatable {
   public var hint: [String]?
   public var id: Int
   public var img: String
@@ -49,7 +49,7 @@ public struct Item: Codable {
   }
 }
 
-public struct Attrib: Codable {
+public struct Attrib: Codable, Equatable {
   public var key, header, value: String
   public var footer: String?
 }

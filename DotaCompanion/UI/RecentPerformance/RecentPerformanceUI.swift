@@ -17,7 +17,7 @@ enum RecentPerformanceUI {
   }
 
   struct Dependency {
-    let repository: RecentPerformanceRepository
+    let repository: RecentPerformanceUseCase
   }
 
   static var reducer: Reducer<State, Event> {

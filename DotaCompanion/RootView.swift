@@ -12,7 +12,9 @@ public struct RootView: View {
       RecentPerformanceUI.RootView(
         store: store.scoped(to: \.recentPerformance, event: AppEvent.recentPerformance)
       )
-      Spacer()
+      MatchesUI.RootView(
+        store: store.scoped(to: \.matchesState, event: AppEvent.matches)
+      )
     }
     .padding()
   }

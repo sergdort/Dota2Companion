@@ -6,17 +6,20 @@ import DotaDomain
 struct AppState {
   var playerState = PlayerUI.State()
   var recentPerformance = RecentPerformanceUI.State()
+  var matchesState = MatchesUI.State()
 }
 
 enum AppEvent {
   case player(PlayerUI.Event)
   case recentPerformance(RecentPerformanceUI.Event)
+  case matches(MatchesUI.Event)
 }
 
 struct AppDependency {
   let playerRepository = PlayerRepository()
-  let recentPerformanceRepository = RecentPerformanceRepository()
+  let recentPerformanceRepository = RecentPerformanceUseCase()
   let winsStatsRepository = WinsStatsRepository()
+  let matchesUseCase = MatchesUseCase()
 }
 
 let appReducer = Reducer<AppState, AppEvent>.combine(
@@ -25,9 +28,11 @@ let appReducer = Reducer<AppState, AppEvent>.combine(
     event: /AppEvent.player
   ),
   RecentPerformanceUI.reducer.pullback(
-    value: \.recentPerformance,
+    value: \AppState.recentPerformance,
     event: /AppEvent.recentPerformance
-  )
+  ),
+  Reducer(reduce: MatchesUI.reducer)
+    .pullback(value: \AppState.matchesState, event: /AppEvent.matches)
 )
 
 let appFeedbacks = Feedback<AppState, AppEvent, AppDependency>.combine(
@@ -46,6 +51,13 @@ let appFeedbacks = Feedback<AppState, AppEvent, AppDependency>.combine(
     event: /AppEvent.recentPerformance,
     dependency: {
       RecentPerformanceUI.Dependency(repository: $0.recentPerformanceRepository)
+    }
+  ),
+  MatchesUI.feedbacks.pullback(
+    value: \AppState.matchesState,
+    event: /AppEvent.matches,
+    dependency: {
+      MatchesUI.Dependencies(useCase: $0.matchesUseCase)
     }
   )
 )

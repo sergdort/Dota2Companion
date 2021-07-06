@@ -19,11 +19,12 @@
 		254B4DEE2676768400653BB8 /* RecentMatchesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DDD2676768400653BB8 /* RecentMatchesRepository.swift */; };
 		254B4DEF2676768400653BB8 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DDF2676768400653BB8 /* CurrentUser.swift */; };
 		254B4DF12676768400653BB8 /* RecentPerformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DE22676768400653BB8 /* RecentPerformance.swift */; };
-		254B4DF22676768400653BB8 /* RecentPerformanceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DE32676768400653BB8 /* RecentPerformanceRepository.swift */; };
+		254B4DF22676768400653BB8 /* RecentPerformanceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DE32676768400653BB8 /* RecentPerformanceUseCase.swift */; };
 		254B4DF42676768400653BB8 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DE62676768400653BB8 /* Hero.swift */; };
 		254B4DF52676768400653BB8 /* HeroRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DE72676768400653BB8 /* HeroRepository.swift */; };
 		254B4DF62676768400653BB8 /* PlayerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DE92676768400653BB8 /* PlayerRepository.swift */; };
 		254B4DF92676768400653BB8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B4DEC2676768400653BB8 /* Player.swift */; };
+		257A6C3E2693A950007A80A9 /* MatchesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257A6C3D2693A950007A80A9 /* MatchesUseCase.swift */; };
 		259F112626828F53006E7B1C /* Items.json in Resources */ = {isa = PBXBuildFile; fileRef = 259F112526828F53006E7B1C /* Items.json */; };
 		259F112826828F8C006E7B1C /* ItemIds.json in Resources */ = {isa = PBXBuildFile; fileRef = 259F112726828F8C006E7B1C /* ItemIds.json */; };
 		259F11312682919B006E7B1C /* DotaDomain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254B4DD02676762200653BB8 /* DotaDomain.framework */; };
@@ -49,16 +50,18 @@
 		252C574F26828C0D00B0C6D3 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		252C575126828CC600B0C6D3 /* MatchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRepository.swift; sourceTree = "<group>"; };
 		252C575326828E6100B0C6D3 /* ItemsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsRepository.swift; sourceTree = "<group>"; };
+		2535F37C2694FCB8002DAB92 /* Heroes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Heroes.json; sourceTree = "<group>"; };
 		254B4DD02676762200653BB8 /* DotaDomain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DotaDomain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		254B4DDC2676768400653BB8 /* RecentMatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentMatch.swift; sourceTree = "<group>"; };
 		254B4DDD2676768400653BB8 /* RecentMatchesRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentMatchesRepository.swift; sourceTree = "<group>"; };
 		254B4DDF2676768400653BB8 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		254B4DE22676768400653BB8 /* RecentPerformance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPerformance.swift; sourceTree = "<group>"; };
-		254B4DE32676768400653BB8 /* RecentPerformanceRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPerformanceRepository.swift; sourceTree = "<group>"; };
+		254B4DE32676768400653BB8 /* RecentPerformanceUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPerformanceUseCase.swift; sourceTree = "<group>"; };
 		254B4DE62676768400653BB8 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		254B4DE72676768400653BB8 /* HeroRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroRepository.swift; sourceTree = "<group>"; };
 		254B4DE92676768400653BB8 /* PlayerRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerRepository.swift; sourceTree = "<group>"; };
 		254B4DEC2676768400653BB8 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		257A6C3D2693A950007A80A9 /* MatchesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesUseCase.swift; sourceTree = "<group>"; };
 		259F112526828F53006E7B1C /* Items.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Items.json; sourceTree = "<group>"; };
 		259F112726828F8C006E7B1C /* ItemIds.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ItemIds.json; sourceTree = "<group>"; };
 		259F112D2682919B006E7B1C /* DotaDomainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotaDomainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +110,7 @@
 			children = (
 				252C574C268283C400B0C6D3 /* Match.swift */,
 				252C575126828CC600B0C6D3 /* MatchRepository.swift */,
+				257A6C3D2693A950007A80A9 /* MatchesUseCase.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -186,7 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				254B4DE22676768400653BB8 /* RecentPerformance.swift */,
-				254B4DE32676768400653BB8 /* RecentPerformanceRepository.swift */,
+				254B4DE32676768400653BB8 /* RecentPerformanceUseCase.swift */,
 			);
 			path = RecentPerformace;
 			sourceTree = "<group>";
@@ -196,6 +200,7 @@
 			children = (
 				254B4DE62676768400653BB8 /* Hero.swift */,
 				254B4DE72676768400653BB8 /* HeroRepository.swift */,
+				2535F37C2694FCB8002DAB92 /* Heroes.json */,
 			);
 			path = Hero;
 			sourceTree = "<group>";
@@ -339,11 +344,12 @@
 				2518F22F26767D13008ABAA7 /* ENV.swift in Sources */,
 				254B4DF12676768400653BB8 /* RecentPerformance.swift in Sources */,
 				252C575026828C0D00B0C6D3 /* Item.swift in Sources */,
+				257A6C3E2693A950007A80A9 /* MatchesUseCase.swift in Sources */,
 				2518F23726769608008ABAA7 /* WinsStats.swift in Sources */,
 				254B4DF42676768400653BB8 /* Hero.swift in Sources */,
 				254B4DF92676768400653BB8 /* Player.swift in Sources */,
 				254B4DF62676768400653BB8 /* PlayerRepository.swift in Sources */,
-				254B4DF22676768400653BB8 /* RecentPerformanceRepository.swift in Sources */,
+				254B4DF22676768400653BB8 /* RecentPerformanceUseCase.swift in Sources */,
 				252C574D268283C400B0C6D3 /* Match.swift in Sources */,
 				254B4DF52676768400653BB8 /* HeroRepository.swift in Sources */,
 				254B4DEF2676768400653BB8 /* CurrentUser.swift in Sources */,

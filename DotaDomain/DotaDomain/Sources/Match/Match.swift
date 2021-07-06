@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Match: Codable {
+public struct Match: Codable, Equatable {
   public var matchID, playerSlot: Int
   public var radiantWin: Bool
   public var duration, gameMode, lobbyType, startTime: Int
@@ -88,6 +88,12 @@ public struct Match: Codable {
     case item3 = "item_3"
     case item4 = "item_4"
     case item5 = "item_5"
+  }
+}
+
+extension Match: Identifiable {
+  public var id: Int {
+    matchID
   }
 }
 

@@ -8,11 +8,7 @@ struct MatchRow: View {
 
   var match: Match
   var hero: Hero
-  var itemsRepo: ItemsRepository
-
-  var items: [Item] {
-    return match.itemsIds.compactMap(itemsRepo.item)
-  }
+  var items: [Item]
 
   var body: some View {
     HStack(alignment: .top) {
@@ -103,7 +99,7 @@ struct MatchRow_Previews: PreviewProvider {
       MatchRow(
         match: .fixture(),
         hero: .fixture(),
-        itemsRepo: ItemsRepository()
+        items: []
       )
       Spacer()
     }
