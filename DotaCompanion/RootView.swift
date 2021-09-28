@@ -5,7 +5,7 @@ public struct RootView: View {
   let store: Store<AppState, AppEvent>
 
   public var body: some View {
-    VStack {
+    ScrollView {
       PlayerUI.RootView(
         store: store.scoped(to: \.playerState, event: AppEvent.player)
       )
@@ -16,6 +16,5 @@ public struct RootView: View {
         store: store.scoped(to: \.matchesState, event: AppEvent.matches)
       )
     }
-    .padding()
   }
 }

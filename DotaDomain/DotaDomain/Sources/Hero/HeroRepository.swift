@@ -8,14 +8,13 @@ final class HeroRepository {
 
   init() {
     do {
-      self.heroes = try bundle.url(forResource: "Heroes", withExtension: "json")
+      let values = try bundle.url(forResource: "Heroes", withExtension: "json")
         .map {
           try Data(contentsOf: $0)
         }.map {
           try $0.decode(Heroes.self, decoder: JSONDecoder())
         }
-        .map(\.values)?
-        .sorted(by: Hero.orderedById) ?? []
+      self.heroes = values.map(\.values)!.sorted(by: Hero.orderedById(lhs:rhs:))
     } catch {
       fatalError("Failed to parse \(error)")
     }

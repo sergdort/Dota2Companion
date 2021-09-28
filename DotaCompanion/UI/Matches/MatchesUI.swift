@@ -15,6 +15,9 @@ enum MatchesUI {
 
   static func reducer(state: inout State, event: Event) {
     switch event {
+    case .didLoadLocal(let matches):
+      state.matches = matches
+      state.didGetLocalData = true
     case .didLoad(let matches):
       state.matches = matches
       state.isLoading = false
@@ -26,16 +29,17 @@ enum MatchesUI {
 
   static var feedbacks: Feedback<State, Event, Dependencies> {
     return .combine(
-      .whenInitialized(just: { depency in
-        Event.didLoad(depency.useCase.matches())
+      .whenInitialized(maybe: { dependency in
+        dependency.useCase.matches()
+          .map(Event.didLoadLocal)
       }),
-      .predicate(predicate: \.isLoading) { _, dependency in
+      .firstValueAfterNil({ $0.isLoading ? $0 : nil }, effect: { _, dependency in
         do {
           return Event.didLoad(try await dependency.useCase.fetchMatches())
         } catch {
           return Event.didFail(error)
         }
-      }
+      })
     )
   }
 
@@ -45,11 +49,13 @@ enum MatchesUI {
 
   struct State: Equatable {
     var matches: [MatchData] = []
-    var isLoading: Bool = false
+    var didGetLocalData = false
+    var isLoading: Bool = true
     var error: NSError? = nil
   }
 
   enum Event {
+    case didLoadLocal([MatchData])
     case didLoad([MatchData])
     case didFail(Error)
   }

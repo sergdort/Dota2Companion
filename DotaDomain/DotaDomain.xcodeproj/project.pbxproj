@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2514A54D26964DA8001CEDE6 /* Heroes.json in Resources */ = {isa = PBXBuildFile; fileRef = 2535F37C2694FCB8002DAB92 /* Heroes.json */; };
 		2518F22326767C9E008ABAA7 /* DotaCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2518F22226767C9E008ABAA7 /* DotaCore.framework */; };
 		2518F22F26767D13008ABAA7 /* ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2518F22E26767D13008ABAA7 /* ENV.swift */; };
 		2518F23726769608008ABAA7 /* WinsStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2518F23626769608008ABAA7 /* WinsStats.swift */; };
@@ -320,6 +321,7 @@
 			files = (
 				259F112626828F53006E7B1C /* Items.json in Resources */,
 				259F112826828F8C006E7B1C /* ItemIds.json in Resources */,
+				2514A54D26964DA8001CEDE6 /* Heroes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

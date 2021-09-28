@@ -55,3 +55,26 @@ public struct Attrib: Codable, Equatable {
 }
 
 extension Item: Identifiable {}
+
+#if DEBUG
+extension Item {
+  public static func fixture() -> Item {
+    Item(
+      hint: [],
+      id: 0,
+      img: "/apps/dota2/images/items/blink_lg.png?t=1593393829403",
+      dname: "Blink Dagger",
+      qual: "component",
+      cost: 2250,
+      notes: "",
+      attrib: [],
+      mc: nil,
+      cd: 12,
+      lore: "",
+      components: [],
+      created: false,
+      charges: nil
+    )
+  }
+}
+#endif

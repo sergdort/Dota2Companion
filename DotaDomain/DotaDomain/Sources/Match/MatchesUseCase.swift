@@ -6,10 +6,10 @@ public final class MatchesUseCase {
 
   public init() {}
 
-  public func matches() -> [MatchData] {
+  public func matches() -> [MatchData]? {
     let matches = matchesRepo.matches()
 
-    return matches.compactMap { match in
+    return matches?.compactMap { match in
       heroesRepo.heroes.findBy(id: match.heroID).map {
         MatchData(
           hero: $0,

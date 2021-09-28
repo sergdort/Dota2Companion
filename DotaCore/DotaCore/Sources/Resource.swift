@@ -2,7 +2,7 @@ import Foundation
 
 public struct Resource: Equatable {
   public typealias Headers = [String: String]
-  public typealias Query = [String: String]
+  public typealias Query = [URLQueryItem]
   
   public enum Method: String {
     case OPTIONS
@@ -27,8 +27,8 @@ public struct Resource: Equatable {
               method: Method = .GET,
               headers: Headers = [:],
               parameters: [String: Any]? = nil,
-              query: Query = [:],
-              percentEncodedQuery: Query = [:]
+              query: Query = [],
+              percentEncodedQuery: Query = []
   ) {
     self.path = path.hasPrefix("/") ? path : "/" + path
     self.method = method
@@ -53,10 +53,7 @@ public func == (lhs: Resource, rhs: Resource) -> Bool {
 
 extension Resource {
   public func toRequest(_ baseURL: URL) -> URLRequest {
-    let query = QueryParameters(
-      query: self.query,
-      percentEncodedQuery: self.percentEncodedQuery
-    )
+    let query = QueryParameters(query: self.query)
     
     let url = baseURL.components(addingResourcePath: path)
       .flatMap { try? $0.url(with: query).get() }
@@ -76,26 +73,17 @@ extension Resource {
 }
 
 struct QueryParameters {
-  let query: [String: String]
-  let percentEncodedQuery: [String: String]
+  let query: Resource.Query
 }
 
 extension URLComponents {
   /// Generate a URL with each parameter defined
   internal func url(with parameters: QueryParameters) -> Result<URL, CoreError> {
     let combinedQueryItems = (self.queryItems ?? [])
-      + parameters.query.map(URLQueryItem.init)
+    + parameters.query
     
     var components = self
     components.queryItems = combinedQueryItems.isNotEmpty ? combinedQueryItems : nil
-    
-    if parameters.percentEncodedQuery.isNotEmpty {
-      let encodedQuery = components.percentEncodedQuery
-        .map { $0.isEmpty ? "" : "\($0)&" } ?? ""
-      
-      components.percentEncodedQuery = encodedQuery
-        + parameters.percentEncodedQuery.map { "\($0)=\($1)" }.joined(separator: "&")
-    }
     
     guard let url = components.url else {
       return .failure(.other("Cannot form a valid URL. (2)"))

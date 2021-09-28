@@ -11,6 +11,8 @@ public struct Match: Codable, Equatable {
   public var leaverStatus: Int
   public var partySize: Int?
   public var item0, item1, item2, item3, item4, item5: Int?
+  public var neutralItem: Int?
+  public var backpack0: Int?
 
   public var isWin: Bool {
     isRadiant == radiantWin
@@ -21,7 +23,7 @@ public struct Match: Codable, Equatable {
   }
 
   public var itemsIds: [Int] {
-    return [item0, item1, item2, item3, item4, item5].compactMap { $0 }
+    return [item0, item1, item2, item3, item4, item5, neutralItem].compactMap { $0 }
   }
 
   public init(
@@ -45,7 +47,8 @@ public struct Match: Codable, Equatable {
     item2: Int? = nil,
     item3: Int? = nil,
     item4: Int? = nil,
-    item5: Int? = nil
+    item5: Int? = nil,
+    backpack0: Int? = nil
   ) {
     self.matchID = matchID
     self.playerSlot = playerSlot
@@ -68,9 +71,11 @@ public struct Match: Codable, Equatable {
     self.item3 = item3
     self.item4 = item4
     self.item5 = item5
+    self.backpack0 = backpack0
   }
 
   enum CodingKeys: String, CodingKey {
+    case neutralItem = "item_neutral"
     case matchID = "match_id"
     case playerSlot = "player_slot"
     case radiantWin = "radiant_win"
@@ -88,6 +93,7 @@ public struct Match: Codable, Equatable {
     case item3 = "item_3"
     case item4 = "item_4"
     case item5 = "item_5"
+    case backpack0 = "backpack_0"
   }
 }
 
@@ -99,11 +105,11 @@ extension Match: Identifiable {
 
 #if DEBUG
 extension Match {
-  public static func fixture() -> Match {
+  public static func fixture(radiantWin: Bool = true) -> Match {
     Match(
       matchID: 6054173905,
       playerSlot: 3,
-      radiantWin: true,
+      radiantWin: radiantWin,
       duration: 2533,
       gameMode: 22,
       lobbyType: 7,

@@ -11,14 +11,17 @@ struct MatchRow: View {
   var items: [Item]
 
   var body: some View {
-    HStack(alignment: .top) {
+    HStack(alignment: .top, spacing: 0) {
+      Rectangle()
+        .fill(match.isWin ? Colors.win.color : Colors.lose.color)
+        .frame(width: 4)
       VStack(alignment: .leading) {
-        Text(match.isWin ? "WON MATCH" : "LOST MATCH")
-          .font(.headline)
-          .foregroundColor(
-            match.isWin ? Colors.win.color : Colors.lose.color
+        HStack(alignment: .top) {
+          AsyncImage(
+            source: hero.imagePublisher(imageFetcher: imageFetcher),
+            placeholder: nil
           )
-        HStack {
+          .frame(width: 80, height: 50)
           MatchStatView(
             value: match.kills,
             name: "KILLS",
@@ -39,7 +42,6 @@ struct MatchRow: View {
             name: "ASSISTS",
             color: Colors.gold.color
           )
-          Spacer()
         }
         HStack {
           ForEach(items) { item in
@@ -52,13 +54,8 @@ struct MatchRow: View {
           }
         }
       }
-      AsyncImage(
-        source: hero.imagePublisher(imageFetcher: imageFetcher),
-        placeholder: nil
-      )
-      .frame(width: 80, height: 50)
+      Spacer()
     }
-    .padding()
   }
 }
 
@@ -68,24 +65,24 @@ struct MatchStatView: View {
   var color: Color
 
   var body: some View {
-    VStack(alignment: .leading) {
+    VStack {
+      Text(name)
+        .font(.caption)
+        .foregroundColor(Colors.textSecondary.color)
+        .lineLimit(1)
       Text("\(value)")
         .font(.subheadline)
         .foregroundColor(color)
         .bold()
-      Text(name)
-        .font(.caption)
-        .foregroundColor(Colors.textSecondary.color)
     }
   }
 }
 
 extension Item {
   func imagePublisher(imageFetcher: ImageFetcher) -> AnyPublisher<UIImage, Never> {
-    imageFetcher.image(
-      for: ENV.prod.assetsBaseURL.appendingPathComponent(
-        img.hasPrefix("/") ? String(img.dropFirst()) : img
-      )
+    let url = URL(string: ENV.prod.assetsBaseURL.absoluteString + img)!
+    return imageFetcher.image(
+      for: url
     )
     .ignoreError()
   }
@@ -95,13 +92,20 @@ extension Item {
 
 struct MatchRow_Previews: PreviewProvider {
   static var previews: some View {
-    VStack {
-      MatchRow(
-        match: .fixture(),
-        hero: .fixture(),
-        items: []
-      )
-      Spacer()
+    ScrollView {
+      LazyVStack {
+        MatchRow(
+          match: .fixture(),
+          hero: .fixture(),
+          items: []
+        )
+        MatchRow(
+          match: .fixture(radiantWin: false),
+          hero: .fixture(),
+          items: Array(repeating: .fixture(), count: 6)
+        )
+        Spacer()
+      }
     }
     .background(Colors.backgroundFront)
   }

@@ -10,15 +10,38 @@ public final class MatchRepository {
   private var resource: Resource {
     Resource(
       path: "players/\(playerId)/matches",
-      method: .GET
+      method: .GET,
+      query: [
+        URLQueryItem(name: "limit", value: "20"),
+        URLQueryItem(name: "project", value: "item_0"),
+        URLQueryItem(name: "project", value: "item_1"),
+        URLQueryItem(name: "project", value: "item_2"),
+        URLQueryItem(name: "project", value: "item_3"),
+        URLQueryItem(name: "project", value: "item_4"),
+        URLQueryItem(name: "project", value: "item_5"),
+        URLQueryItem(name: "project", value: "backpack_0"),
+        URLQueryItem(name: "project", value: "duration"),
+        URLQueryItem(name: "project", value: "game_mode"),
+        URLQueryItem(name: "project", value: "lobby_type"),
+        URLQueryItem(name: "project", value: "start_time"),
+        URLQueryItem(name: "project", value: "hero_id"),
+        URLQueryItem(name: "project", value: "version"),
+        URLQueryItem(name: "project", value: "kills"),
+        URLQueryItem(name: "project", value: "deaths"),
+        URLQueryItem(name: "project", value: "assists"),
+        URLQueryItem(name: "project", value: "skill"),
+        URLQueryItem(name: "project", value: "leaver_status"),
+        URLQueryItem(name: "project", value: "party_size"),
+        URLQueryItem(name: "project", value: "item_neutral"),
+      ]
     )
   }
 
   public init() {}
 
-  public func matches() -> [Match] {
-    (try? cache.loadFile(path: resource.path + ".json")
-      .decode([Match].self, decoder: JSONDecoder())) ?? []
+  public func matches() -> [Match]? {
+    try? cache.loadFile(path: resource.path + ".json")
+      .decode([Match].self, decoder: JSONDecoder())
   }
 
   public func fetchMatches() async throws -> [Match] {

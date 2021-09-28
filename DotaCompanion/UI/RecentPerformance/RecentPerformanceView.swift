@@ -50,6 +50,7 @@ public struct RecentPerformanceView: View {
             nil
           )
         )
+        Spacer()
       }
     }
   }
@@ -142,8 +143,9 @@ extension Optional where Wrapped == Hero {
 
 extension Hero {
   func imagePublisher(imageFetcher: ImageFetcher) -> AnyPublisher<UIImage, Never> {
-    imageFetcher.image(
-      for: ENV.prod.assetsBaseURL.appendingPathComponent(img)
+    let url = URL(string: ENV.prod.assetsBaseURL.absoluteString + img)!
+    return imageFetcher.image(
+      for: url
     )
     .ignoreError()
   }
