@@ -11,6 +11,8 @@ enum HeroesGridUI {
       WithViewContext(store: store) { context in
         HeroesGridView(heroes: context.heroes)
       }
+      .background(Colors.backgroundFront.color)
+      .navigationTitle("Heroes")
     }
   }
 
