@@ -7,12 +7,14 @@ struct AppState {
   var playerState = PlayerUI.State()
   var recentPerformance = RecentPerformanceUI.State()
   var matchesState = MatchesUI.State()
+  var heroes = HeroesGridUI.State()
 }
 
 enum AppEvent {
   case player(PlayerUI.Event)
   case recentPerformance(RecentPerformanceUI.Event)
   case matches(MatchesUI.Event)
+  case heroes(HeroesGridUI.Event)
 }
 
 struct AppDependency {
@@ -20,6 +22,7 @@ struct AppDependency {
   let recentPerformanceRepository = RecentPerformanceUseCase()
   let winsStatsRepository = WinsStatsRepository()
   let matchesUseCase = MatchesUseCase()
+  let heroesListUseCase = HeroesListUseCase()
 }
 
 let appReducer = Reducer<AppState, AppEvent>.combine(
@@ -32,7 +35,9 @@ let appReducer = Reducer<AppState, AppEvent>.combine(
     event: /AppEvent.recentPerformance
   ),
   Reducer(reduce: MatchesUI.reducer)
-    .pullback(value: \AppState.matchesState, event: /AppEvent.matches)
+    .pullback(value: \AppState.matchesState, event: /AppEvent.matches),
+  HeroesGridUI.reducer
+    .pullback(value: \AppState.heroes, event: /AppEvent.heroes)
 )
 
 let appFeedbacks = Feedback<AppState, AppEvent, AppDependency>.combine(
@@ -59,5 +64,13 @@ let appFeedbacks = Feedback<AppState, AppEvent, AppDependency>.combine(
     dependency: {
       MatchesUI.Dependencies(useCase: $0.matchesUseCase)
     }
-  )
+  ),
+  HeroesGridUI.feedbacks
+    .pullback(
+      value: \AppState.heroes,
+      event: /AppEvent.heroes,
+      dependency: {
+        HeroesGridUI.Dependencies(useCase: $0.heroesListUseCase)
+      }
+    )
 )

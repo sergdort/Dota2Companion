@@ -5,31 +5,28 @@ import DotaDomain
 import DotaCore
 
 enum PlayerUI {
-  struct State: Equatable {
-    var player = Player(
-      rankTier: 0,
-      leaderboardRank: nil,
-      profile: Player.Profile(
-        accountId: 0,
-        personaname: "Placeholder",
-        avatar: URL(string: "https://github.com/")!,
-        avatarmedium: URL(string: "https://github.com/")!,
-        avatarfull: URL(string: "https://github.com/")!
-      )
-    )
-    var rankIcon: RankIcon? = nil
-    var winStats = WinsStats(win: 1000, lose: 1000)
-    var isLoading = true
-  }
+  struct RootView: View {
+    @Environment(\.imageFetcher)
+    private var imageFetcher
+    let store: Store<PlayerUI.State, PlayerUI.Event>
 
-  enum Event {
-    case didLoad(Player, RankIcon?, WinsStats)
-    case didFail(CoreError)
-  }
-
-  struct Dependency {
-    let player: PlayerRepository
-    let winStats: WinsStatsRepository
+    public var body: some View {
+      WithViewContext(store: store) { context in
+        PlayerView(
+          image: (
+            imageFetcher.image(for: context.player.profile.avatarmedium)
+              .ignoreError(),
+            nil
+          ),
+          rankIcon: context.rankIcon,
+          name: context.player.profile.name ?? context.player.profile.personaname,
+          wins: context.winStats.win,
+          loses: context.winStats.lose
+        )
+        .redacted(reason: context.isLoading ? .placeholder : [])
+      }
+      .padding(.horizontal)
+    }
   }
 
   static var reducer: Reducer<State, Event> {
@@ -77,26 +74,31 @@ enum PlayerUI {
     )
   }
 
-  struct RootView: View {
-    @Environment(\.imageFetcher)
-    private var imageFetcher
-    let store: Store<PlayerUI.State, PlayerUI.Event>
-
-    public var body: some View {
-      WithViewContext(store: store) { context in
-        PlayerView(
-          image: (
-            imageFetcher.image(for: context.player.profile.avatarmedium)
-              .ignoreError(),
-            nil
-          ),
-          rankIcon: context.rankIcon,
-          name: context.player.profile.name ?? context.player.profile.personaname,
-          wins: context.winStats.win,
-          loses: context.winStats.lose
-        )
-        .redacted(reason: context.isLoading ? .placeholder : [])
-      }
-    }
+  struct State: Equatable {
+    var player = Player(
+      rankTier: 0,
+      leaderboardRank: nil,
+      profile: Player.Profile(
+        accountId: 0,
+        personaname: "Placeholder",
+        avatar: URL(string: "https://github.com/")!,
+        avatarmedium: URL(string: "https://github.com/")!,
+        avatarfull: URL(string: "https://github.com/")!
+      )
+    )
+    var rankIcon: RankIcon? = nil
+    var winStats = WinsStats(win: 1000, lose: 1000)
+    var isLoading = true
   }
+
+  enum Event {
+    case didLoad(Player, RankIcon?, WinsStats)
+    case didFail(CoreError)
+  }
+
+  struct Dependency {
+    let player: PlayerRepository
+    let winStats: WinsStatsRepository
+  }
+
 }

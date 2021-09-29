@@ -30,6 +30,7 @@
 		259F112826828F8C006E7B1C /* ItemIds.json in Resources */ = {isa = PBXBuildFile; fileRef = 259F112726828F8C006E7B1C /* ItemIds.json */; };
 		259F11312682919B006E7B1C /* DotaDomain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254B4DD02676762200653BB8 /* DotaDomain.framework */; };
 		259F1138268291E6006E7B1C /* ItemsRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259F1137268291E6006E7B1C /* ItemsRepositoryTests.swift */; };
+		25C93A532703571A00985229 /* HeroesListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C93A522703571A00985229 /* HeroesListUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		259F112726828F8C006E7B1C /* ItemIds.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ItemIds.json; sourceTree = "<group>"; };
 		259F112D2682919B006E7B1C /* DotaDomainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotaDomainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		259F1137268291E6006E7B1C /* ItemsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsRepositoryTests.swift; sourceTree = "<group>"; };
+		25C93A522703571A00985229 /* HeroesListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesListUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 			children = (
 				254B4DE62676768400653BB8 /* Hero.swift */,
 				254B4DE72676768400653BB8 /* HeroRepository.swift */,
+				25C93A522703571A00985229 /* HeroesListUseCase.swift */,
 				2535F37C2694FCB8002DAB92 /* Heroes.json */,
 			);
 			path = Hero;
@@ -346,6 +349,7 @@
 				2518F22F26767D13008ABAA7 /* ENV.swift in Sources */,
 				254B4DF12676768400653BB8 /* RecentPerformance.swift in Sources */,
 				252C575026828C0D00B0C6D3 /* Item.swift in Sources */,
+				25C93A532703571A00985229 /* HeroesListUseCase.swift in Sources */,
 				257A6C3E2693A950007A80A9 /* MatchesUseCase.swift in Sources */,
 				2518F23726769608008ABAA7 /* WinsStats.swift in Sources */,
 				254B4DF42676768400653BB8 /* Hero.swift in Sources */,

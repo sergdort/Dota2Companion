@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "25F86E88263FFA3A00546CB2"
-               BuildableName = "DotaCompanionTests.xctest"
-               BlueprintName = "DotaCompanionTests"
-               ReferencedContainer = "container:DotaCompanion.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "25F86E93263FFA3A00546CB2"
-               BuildableName = "DotaCompanionUITests.xctest"
-               BlueprintName = "DotaCompanionUITests"
-               ReferencedContainer = "container:DotaCompanion.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -145,9 +145,9 @@ typealias Heroes = [String: Hero]
 #if DEBUG
 
 extension Hero {
-  public static func fixture() -> Hero {
+  public static func fixture(id: Int = 1) -> Hero {
     Hero(
-      id: 1,
+      id: id,
       name: "npc_dota_hero_antimage",
       localizedName: "Anti-Mage",
       primaryAttr: .agi,

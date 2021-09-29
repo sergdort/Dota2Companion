@@ -5,24 +5,28 @@ import Foundation
 import SwiftUI
 
 enum RecentPerformanceUI {
-  struct State: Equatable {
-    var recentPerformance: RecentPerformance = .empty
-    var isLoading = true
-    var error: NSError?
-  }
+  struct RootView: View {
+    let store: Store<State, Event>
 
-  enum Event {
-    case didLoad(RecentPerformance)
-    case didFail(Error)
-  }
-
-  struct Dependency {
-    let repository: RecentPerformanceUseCase
+    var body: some View {
+      WithViewContext(store: store) { context in
+        RecentPerformanceView(
+          winRate: context.recentPerformance.winRate,
+          kills: context.recentPerformance.kills,
+          deaths: context.recentPerformance.deaths,
+          assists: context.recentPerformance.assists
+        )
+        .redacted(reason: context.isLoading ? .placeholder : [])
+      }
+      .padding(.horizontal)
+    }
   }
 
   static var reducer: Reducer<State, Event> {
     .init { state, event in
       switch event {
+      case let .didGetLocalData(performance):
+        state.recentPerformance = performance
       case let .didLoad(performance):
         state.recentPerformance = performance
         state.isLoading = false
@@ -37,7 +41,7 @@ enum RecentPerformanceUI {
     return .combine(
       .whenInitialized(maybe: { dependency in
         dependency.repository.recentPerformance()
-          .map(Event.didLoad)
+          .map(Event.didGetLocalData)
       }),
       .predicate(predicate: \.isLoading) { _, dependency in
         do {
@@ -49,19 +53,19 @@ enum RecentPerformanceUI {
     )
   }
 
-  struct RootView: View {
-    let store: Store<State, Event>
+  struct State: Equatable {
+    var recentPerformance: RecentPerformance = .empty
+    var isLoading = true
+    var error: NSError?
+  }
 
-    var body: some View {
-      WithViewContext(store: store) { context in
-        RecentPerformanceView(
-          winRate: context.recentPerformance.winRate,
-          kills: context.recentPerformance.kills,
-          deaths: context.recentPerformance.deaths,
-          assists: context.recentPerformance.assists
-        )
-        .redacted(reason: context.isLoading ? .placeholder : [])
-      }
-    }
+  enum Event {
+    case didLoad(RecentPerformance)
+    case didGetLocalData(RecentPerformance)
+    case didFail(Error)
+  }
+
+  struct Dependency {
+    let repository: RecentPerformanceUseCase
   }
 }
