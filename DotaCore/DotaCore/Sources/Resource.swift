@@ -20,7 +20,7 @@ public struct Resource: Equatable {
   public let method: Method
   public var headers: Headers
   public var parameters: [String: Any]?
-  public let query: Query
+  public var query: Query
   public let percentEncodedQuery: Query
   
   public init(path: String = "",

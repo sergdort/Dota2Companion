@@ -16,7 +16,7 @@ public struct RecentPerformanceView: View {
     VStack(alignment: .leading) {
       WidgetHeader(
         mainText: "Averages/Maximums",
-        secondaryText: "in last 20 displayed matches"
+        secondaryText: "in last 20 matches"
       )
       HStack {
         WinRateView(winRate: Int(winRate * 100))
@@ -32,8 +32,8 @@ public struct RecentPerformanceView: View {
         )
         RecentPerformanceStatView(
           name: "DEATHS",
-          averageValue: 3,
-          maxValue: 7,
+          averageValue: deaths.average.toInt,
+          maxValue: deaths.max,
           color: Colors.lose.color,
           heroIcon: (
             deaths.maxHero.iconPublisher(imageFetcher: imageFetcher),
@@ -42,8 +42,8 @@ public struct RecentPerformanceView: View {
         )
         RecentPerformanceStatView(
           name: "ASSISTS",
-          averageValue: 14,
-          maxValue: 28,
+          averageValue: assists.average.toInt,
+          maxValue: assists.max,
           color: Colors.gold.color,
           heroIcon: (
             assists.maxHero.iconPublisher(imageFetcher: imageFetcher),
@@ -141,16 +141,6 @@ extension Optional where Wrapped == Hero {
   }
 }
 
-extension Hero {
-  func imagePublisher(imageFetcher: ImageFetcher) -> AnyPublisher<UIImage, Never> {
-    let url = URL(string: ENV.prod.assetsBaseURL.absoluteString + img)!
-    return imageFetcher.image(
-      for: url
-    )
-    .ignoreError()
-  }
-}
-
 #if DEBUG
 import SwiftUI
 
@@ -167,4 +157,3 @@ struct RecentPerformanceView_Previews: PreviewProvider {
 }
 
 #endif
-

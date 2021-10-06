@@ -1,6 +1,7 @@
 import SwiftUI
 import Combine
 import DotaCore
+import DotaDomain
 
 struct AsyncImage: View {
   @State
@@ -23,6 +24,52 @@ struct AsyncImage: View {
   }
 }
 
+struct AsyncUIImage: View {
+  @State
+  private var image: UIImage?
+  private let source: AnyPublisher<UIImage, Never>
+  private let contentMode: UIView.ContentMode
+
+  init(
+    contentMode: UIView.ContentMode = .scaleAspectFill,
+    source: AnyPublisher<UIImage, Never>,
+    placeholder: UIImage? = nil
+  ) {
+    self.contentMode = contentMode
+    self.source = source
+    self._image = State(initialValue: placeholder)
+  }
+
+  var body: some View {
+    return ImageRepresentable(
+      contentMode: contentMode,
+      image: image
+    )
+    .bind(source, to: $image)
+  }
+}
+
+struct ImageRepresentable: UIViewRepresentable {
+  var contentMode: UIView.ContentMode
+  var image: UIImage?
+
+  func makeUIView(context: Context) -> View {
+    View(image: image)
+  }
+
+  func updateUIView(_ uiView: View, context: Context) {
+    uiView.image = image
+    uiView.contentMode = contentMode
+    uiView.clipsToBounds = true
+  }
+
+  final class View: UIImageView {
+    public override var intrinsicContentSize: CGSize {
+      return CGSize(width: UIView.noIntrinsicMetric, height: UIView.noIntrinsicMetric)
+    }
+  }
+}
+
 extension View {
   func bind<P: Publisher, Value>(
     _ publisher: P,
@@ -31,43 +78,6 @@ extension View {
     return onReceive(publisher) { value in
       state.wrappedValue = value
     }
-  }
-}
-
-final class ImageFetcher {
-  private let cache = NSCache<NSURL, UIImage>()
-  private let repo = FileCache(name: "ImageFetcher")
-
-  func image(for url: URL) -> AnyPublisher<UIImage, Error> {
-    return Deferred { () -> AnyPublisher<UIImage, Error> in
-      if let image = self.cache.object(forKey: url as NSURL) {
-        return Result.Publisher(image).eraseToAnyPublisher()
-      } else if let data = try? self.repo.loadFile(path: url.path), let image = UIImage(data: data) {
-        self.cache.setObject(image, forKey: url as NSURL)
-        return Result.Publisher(image).eraseToAnyPublisher()
-      }
-      return URLSession.shared
-        .dataTaskPublisher(for: url)
-        .map(\.data)
-        .handleEvents(receiveOutput: { data in
-          try? self.repo.persist(data: data, path: url.path)
-        })
-        .tryMap { data -> UIImage in
-          if let image = UIImage(data: data) {
-            return image
-          }
-          throw CoreError.parser("Could not create image from \(url)")
-        }
-        .receive(on: DispatchQueue.main)
-        .handleEvents(receiveOutput: { image in
-          self.cache.setObject(image, forKey: url as NSURL)
-        })
-        .mapError { error in
-          error as Error
-        }
-        .eraseToAnyPublisher()
-    }
-    .eraseToAnyPublisher()
   }
 }
 

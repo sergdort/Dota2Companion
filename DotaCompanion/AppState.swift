@@ -70,7 +70,10 @@ let appFeedbacks = Feedback<AppState, AppEvent, AppDependency>.combine(
       value: \AppState.heroes,
       event: /AppEvent.heroes,
       dependency: {
-        HeroesGridUI.Dependencies(useCase: $0.heroesListUseCase)
+        HeroesGridUI.Dependencies(
+          useCase: $0.heroesListUseCase,
+          recentPerformance: $0.recentPerformanceRepository
+        )
       }
     )
 )

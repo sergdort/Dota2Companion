@@ -3,6 +3,7 @@ import DotaDomain
 
 struct HeroesGridView: View {
   let heroes: [Hero]
+  let onSelect: (Hero) -> Void
 
   var body: some View {
     ScrollView {
@@ -19,8 +20,12 @@ struct HeroesGridView: View {
         spacing: 8
       ) {
         ForEach(heroes, id: \.id) { hero in
-          HeroGridItem(hero: hero)
-            .aspectRatio(CGSize(width: 256, height: 144), contentMode: .fill)
+          Button {
+            onSelect(hero)
+          } label: {
+            HeroGridItem(hero: hero)
+          }
+          .aspectRatio(CGSize(width: 256, height: 144), contentMode: .fill)
         }
       }
       .padding(.horizontal)
@@ -40,7 +45,8 @@ struct HeroesGridView_Previews: PreviewProvider {
         .fixture(id: 2),
         .fixture(id: 3),
         .fixture(id: 5)
-      ]
+      ],
+      onSelect: { _ in EmptyView() }
     )
   }
 }

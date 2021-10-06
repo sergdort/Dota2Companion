@@ -2,6 +2,24 @@
   "object": {
     "pins": [
       {
+        "package": "BackedCodable",
+        "repositoryURL": "https://github.com/jegnux/BackedCodable.git",
+        "state": {
+          "branch": null,
+          "revision": "c28a4e556298bd81ba068f0f1c534af73ffd46f9",
+          "version": "0.1.1"
+        }
+      },
+      {
+        "package": "CodableWrappers",
+        "repositoryURL": "https://github.com/GottaGetSwifty/CodableWrappers.git",
+        "state": {
+          "branch": null,
+          "revision": "c145ef4938ae5da91e6434ad1a0d55af940702fe",
+          "version": "2.0.6"
+        }
+      },
+      {
         "package": "combine-schedulers",
         "repositoryURL": "https://github.com/pointfreeco/combine-schedulers.git",
         "state": {

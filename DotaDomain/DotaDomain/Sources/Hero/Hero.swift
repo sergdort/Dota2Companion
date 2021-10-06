@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import UIKit
 
 public struct Hero: Equatable, Codable {
   public init(
@@ -112,6 +113,7 @@ public struct Hero: Equatable, Codable {
     case cmEnabled = "cm_enabled"
     case legs
   }
+
   static func orderedById(lhs: Hero, rhs: Hero) -> Bool {
     return lhs.id < rhs.id
   }
@@ -142,10 +144,31 @@ public enum Role: String, Codable {
 
 typealias Heroes = [String: Hero]
 
+public extension Hero {
+  func imagePublisher(imageFetcher: ImageFetcher) -> AnyPublisher<UIImage, Never> {
+    let url = URL(string: ENV.prod.assetsBaseURL.absoluteString + img)!
+    return imageFetcher.image(
+      for: url
+    )
+    .ignoreError()
+  }
+
+  func backdropImage(imageFetcher: ImageFetcher) -> AnyPublisher<UIImage, Never> {
+    let url = URL(
+      string: ENV.prod.dota2CDN.absoluteString + "/videos/dota_react/heroes/renders/" + name
+        .replacingOccurrences(of: "npc_dota_hero_", with: "") + ".png"
+    )!
+    return imageFetcher.image(
+      for: url
+    )
+    .ignoreError()
+  }
+}
+
 #if DEBUG
 
-extension Hero {
-  public static func fixture(id: Int = 1) -> Hero {
+public extension Hero {
+  static func fixture(id: Int = 1) -> Hero {
     Hero(
       id: id,
       name: "npc_dota_hero_antimage",

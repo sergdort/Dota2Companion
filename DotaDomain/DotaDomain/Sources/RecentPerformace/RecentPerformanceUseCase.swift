@@ -1,25 +1,30 @@
 import Combine
 
 public final class RecentPerformanceUseCase {
-  private let matchesRepo = RecentMatchesRepository()
+  private let matchesRepo = MatchRepository()
   private let heroesRepo = HeroRepository()
 
   public init() {}
 
   public func recentPerformance() -> RecentPerformance? {
-    return matchesRepo.recentMatches().map {
+    return matchesRepo.matches().map {
       makeRecentPerformance(heroes: heroesRepo.heroes, matches: $0)
     }
   }
 
   public func fetchRecentPerformance() async throws -> RecentPerformance {
-    let matches = try await matchesRepo.fetchRecentMatches()
+    let matches = try await matchesRepo.fetchMatches()
+    return makeRecentPerformance(heroes: heroesRepo.heroes, matches: matches)
+  }
+
+  public func fetchRecentPerformance(for hero: Hero) async throws -> RecentPerformance {
+    let matches = try await matchesRepo.fetchMatches(heroId: hero.id)
     return makeRecentPerformance(heroes: heroesRepo.heroes, matches: matches)
   }
 
   private func makeRecentPerformance(
     heroes: [Hero],
-    matches: [RecentMatch]
+    matches: [Match]
   ) -> RecentPerformance {
     if matches.isEmpty {
       return .empty
@@ -40,22 +45,22 @@ public final class RecentPerformanceUseCase {
     let maxAssistsMatch = matches.max(by: \.assists)!
 
     let averageGPM = matches.average(by: \.goldPerMin)
-    let maxGPMMatch = matches.max(by: \.goldPerMin)!
+    let maxGPMMatch = matches.max(by: \.goldPerMin, defaultValue: 0)!
 
     let averageXPM = matches.average(by: \.xpPerMin)
-    let maxXPMMatch = matches.max(by: \.xpPerMin)!
+    let maxXPMMatch = matches.max(by: \.xpPerMin, defaultValue: 0)!
 
     let averageLastHits = matches.average(by: \.lastHits)
-    let maxLastHitsMatch = matches.max(by: \.lastHits)!
+    let maxLastHitsMatch = matches.max(by: \.lastHits, defaultValue: 0)!
 
     let averageHeroDmg = matches.average(by: \.heroDamage)
-    let maxHeroDMGMatch = matches.max(by: \.heroDamage)!
+    let maxHeroDMGMatch = matches.max(by: \.heroDamage, defaultValue: 0)!
 
     let averageHeroHeal = matches.average(by: \.heroHealing)
-    let maxHeroHealMatch = matches.max(by: \.heroHealing)!
+    let maxHeroHealMatch = matches.max(by: \.heroHealing, defaultValue: 0)!
 
     let averageTowerDmg = matches.average(by: \.towerDamage)
-    let maxTowerDmgMatch = matches.max(by: \.towerDamage)!
+    let maxTowerDmgMatch = matches.max(by: \.towerDamage, defaultValue: 0)!
 
     return RecentPerformance(
       numberOfGames: numberOfGames,
@@ -77,32 +82,32 @@ public final class RecentPerformanceUseCase {
       ),
       gpm: RecentPerformance.Value(
         average: averageGPM,
-        max: maxGPMMatch.goldPerMin,
+        max: maxGPMMatch.goldPerMin ?? 0,
         maxHero: heroes.findBy(id: maxGPMMatch.heroID)
       ),
       xpm: RecentPerformance.Value(
         average: averageXPM,
-        max: maxXPMMatch.xpPerMin,
+        max: maxXPMMatch.xpPerMin ?? 0,
         maxHero: heroes.findBy(id: maxXPMMatch.heroID)
       ),
       lastHits: RecentPerformance.Value(
         average: averageLastHits,
-        max: maxLastHitsMatch.lastHits,
+        max: maxLastHitsMatch.lastHits ?? 0,
         maxHero: heroes.findBy(id: maxLastHitsMatch.heroID)
       ),
       heroDmg: RecentPerformance.Value(
         average: averageHeroDmg,
-        max: maxHeroDMGMatch.heroDamage,
+        max: maxHeroDMGMatch.heroDamage ?? 0,
         maxHero: heroes.findBy(id: maxHeroDMGMatch.heroID)
       ),
       heroHeal: RecentPerformance.Value(
         average: averageHeroHeal,
-        max: maxHeroHealMatch.heroHealing,
+        max: maxHeroHealMatch.heroHealing ?? 0,
         maxHero: heroes.findBy(id: maxHeroHealMatch.heroID)
       ),
       towerDmg: RecentPerformance.Value(
         average: averageTowerDmg,
-        max: maxTowerDmgMatch.towerDamage,
+        max: maxTowerDmgMatch.towerDamage ?? 0,
         maxHero: heroes.findBy(id: maxTowerDmgMatch.heroID)
       )
     )
@@ -131,5 +136,25 @@ extension Array {
 
   func max<Attribute: Comparable>(by keyPath: KeyPath<Element, Attribute>) -> Element? {
     self.max(by: { lhs, rhs in lhs[keyPath: keyPath] < rhs[keyPath: keyPath] })
+  }
+
+  func sum(by keyPath: KeyPath<Element, Int?>) -> Int {
+    return reduce(0) { acum, element in
+      acum + (element[keyPath: keyPath] ?? 0)
+    }
+  }
+
+  func average(by keyPath: KeyPath<Element, Int?>) -> Double {
+    if isEmpty {
+      return 0
+    }
+    return Double(sum(by: keyPath)) / Double(count)
+  }
+
+  func max<Attribute: Comparable>(
+    by keyPath: KeyPath<Element, Attribute?>,
+    defaultValue: Attribute
+  ) -> Element? {
+    self.max(by: { lhs, rhs in (lhs[keyPath: keyPath] ?? defaultValue) < (rhs[keyPath: keyPath] ?? defaultValue) })
   }
 }

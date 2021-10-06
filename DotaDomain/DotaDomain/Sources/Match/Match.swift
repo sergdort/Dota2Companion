@@ -1,8 +1,10 @@
 import Foundation
+import CodableWrappers
 
 public struct Match: Codable, Equatable {
   public var matchID, playerSlot: Int
   public var radiantWin: Bool
+  public var lastHits, heroHealing, xpPerMin, goldPerMin, heroDamage, towerDamage: Int?
   public var duration, gameMode, lobbyType, startTime: Int
   public var heroID: Int
   public var version: Int?
@@ -48,7 +50,13 @@ public struct Match: Codable, Equatable {
     item3: Int? = nil,
     item4: Int? = nil,
     item5: Int? = nil,
-    backpack0: Int? = nil
+    backpack0: Int? = nil,
+    lastHits: Int = 200,
+    heroHealing: Int = 0,
+    xpPerMin: Int = 0,
+    goldPerMin: Int = 0,
+    heroDamage: Int = 0,
+    towerDamage: Int = 0
   ) {
     self.matchID = matchID
     self.playerSlot = playerSlot
@@ -72,6 +80,12 @@ public struct Match: Codable, Equatable {
     self.item4 = item4
     self.item5 = item5
     self.backpack0 = backpack0
+    self.lastHits = lastHits
+    self.heroHealing = heroHealing
+    self.xpPerMin = xpPerMin
+    self.goldPerMin = goldPerMin
+    self.heroDamage = heroDamage
+    self.towerDamage = towerDamage
   }
 
   enum CodingKeys: String, CodingKey {
@@ -94,6 +108,12 @@ public struct Match: Codable, Equatable {
     case item4 = "item_4"
     case item5 = "item_5"
     case backpack0 = "backpack_0"
+    case xpPerMin = "xp_per_min"
+    case goldPerMin = "gold_per_min"
+    case heroDamage = "hero_damage"
+    case towerDamage = "tower_damage"
+    case heroHealing = "hero_healing"
+    case lastHits = "last_hits"
   }
 }
 

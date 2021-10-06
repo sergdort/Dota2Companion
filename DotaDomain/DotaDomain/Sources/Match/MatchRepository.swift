@@ -33,6 +33,12 @@ public final class MatchRepository {
         URLQueryItem(name: "project", value: "leaver_status"),
         URLQueryItem(name: "project", value: "party_size"),
         URLQueryItem(name: "project", value: "item_neutral"),
+        URLQueryItem(name: "project", value: "xp_per_min"),
+        URLQueryItem(name: "project", value: "gold_per_min"),
+        URLQueryItem(name: "project", value: "hero_damage"),
+        URLQueryItem(name: "project", value: "tower_damage"),
+        URLQueryItem(name: "project", value: "hero_healing"),
+        URLQueryItem(name: "project", value: "last_hits"),
       ]
     )
   }
@@ -48,6 +54,20 @@ public final class MatchRepository {
     let request = resource.toRequest(environment.apiBaseURL)
     let matches = try await session.fetch([Match].self, request: request, decoder: JSONDecoder())
     try cache.persist(item: matches, encoder: JSONEncoder(), path: resource.path + ".json")
+
+    return matches
+  }
+
+  func fetchMatches(heroId: Int) async throws -> [Match] {
+    var resource = self.resource
+    resource.query.append(URLQueryItem(name: "hero_id", value: "\(heroId)"))
+    let request = resource.toRequest(environment.apiBaseURL)
+    let matches = try await session.fetch([Match].self, request: request, decoder: JSONDecoder())
+    try cache.persist(
+      item: matches,
+      encoder: JSONEncoder(),
+      path: resource.path + "/\(heroId)" + ".json"
+    )
 
     return matches
   }
