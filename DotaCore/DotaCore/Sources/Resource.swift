@@ -157,13 +157,13 @@ extension URL {
 }
 
 extension Array {
-    var isNotEmpty: Bool {
+    public var isNotEmpty: Bool {
         return isEmpty == false
     }
 }
 
 extension Dictionary {
-    var isNotEmpty: Bool {
+    public var isNotEmpty: Bool {
         return isEmpty == false
     }
 }

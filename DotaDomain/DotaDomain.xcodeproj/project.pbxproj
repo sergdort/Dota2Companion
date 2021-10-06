@@ -31,6 +31,7 @@
 		25B2DC3A270C5E4E00EACB44 /* CodableWrappers in Frameworks */ = {isa = PBXBuildFile; productRef = 25B2DC39270C5E4E00EACB44 /* CodableWrappers */; };
 		25B2DC3D270C5F1800EACB44 /* BackedCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 25B2DC3C270C5F1800EACB44 /* BackedCodable */; };
 		25B2DC44270DABA600EACB44 /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B2DC43270DABA600EACB44 /* ImageFetcher.swift */; };
+		25B2DC47270DBD0400EACB44 /* Ability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B2DC46270DBD0400EACB44 /* Ability.swift */; };
 		25C93A532703571A00985229 /* HeroesListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C93A522703571A00985229 /* HeroesListUseCase.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		259F112D2682919B006E7B1C /* DotaDomainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotaDomainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		259F1137268291E6006E7B1C /* ItemsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsRepositoryTests.swift; sourceTree = "<group>"; };
 		25B2DC43270DABA600EACB44 /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
+		25B2DC46270DBD0400EACB44 /* Ability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ability.swift; sourceTree = "<group>"; };
 		25C93A522703571A00985229 /* HeroesListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesListUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				2518F22E26767D13008ABAA7 /* ENV.swift */,
+				25B2DC45270DBCF700EACB44 /* Ability */,
 				25B2DC3E270DAB3B00EACB44 /* Images */,
 				252C574E26828BF500B0C6D3 /* Item */,
 				252C574B2682832A00B0C6D3 /* Match */,
@@ -225,6 +228,14 @@
 				25B2DC43270DABA600EACB44 /* ImageFetcher.swift */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		25B2DC45270DBCF700EACB44 /* Ability */ = {
+			isa = PBXGroup;
+			children = (
+				25B2DC46270DBD0400EACB44 /* Ability.swift */,
+			);
+			path = Ability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +368,7 @@
 				25C93A532703571A00985229 /* HeroesListUseCase.swift in Sources */,
 				257A6C3E2693A950007A80A9 /* MatchesUseCase.swift in Sources */,
 				2518F23726769608008ABAA7 /* WinsStats.swift in Sources */,
+				25B2DC47270DBD0400EACB44 /* Ability.swift in Sources */,
 				254B4DF42676768400653BB8 /* Hero.swift in Sources */,
 				254B4DF92676768400653BB8 /* Player.swift in Sources */,
 				254B4DF62676768400653BB8 /* PlayerRepository.swift in Sources */,

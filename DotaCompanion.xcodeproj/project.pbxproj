@@ -23,6 +23,7 @@
 		258EC6ED26405DD800AD0024 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6EC26405DD800AD0024 /* AsyncImage.swift */; };
 		258EC6F32640634B00AD0024 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6F22640634B00AD0024 /* Colors.swift */; };
 		258EC6F5264064C000AD0024 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258EC6F4264064C000AD0024 /* Theme.swift */; };
+		25B2DC4A270DD02300EACB44 /* AbilityDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B2DC49270DD02300EACB44 /* AbilityDetailsView.swift */; };
 		25BD864826794B7300872CD6 /* CombineFeedback in Frameworks */ = {isa = PBXBuildFile; productRef = 25BD864726794B7300872CD6 /* CombineFeedback */; };
 		25C7EF27267BC197008803AB /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C7EF26267BC197008803AB /* AppState.swift */; };
 		25C7EF29267BD0B9008803AB /* Feedback+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C7EF28267BD0B9008803AB /* Feedback+Ext.swift */; };
@@ -87,6 +88,7 @@
 		258EC6EC26405DD800AD0024 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		258EC6F22640634B00AD0024 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		258EC6F4264064C000AD0024 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		25B2DC49270DD02300EACB44 /* AbilityDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityDetailsView.swift; sourceTree = "<group>"; };
 		25BD863D26793BD600872CD6 /* CombineFeedback */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CombineFeedback; path = ../CombineFeedback; sourceTree = "<group>"; };
 		25C7EF26267BC197008803AB /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		25C7EF28267BD0B9008803AB /* Feedback+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Feedback+Ext.swift"; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 		254B4E042676786000653BB8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				25B2DC48270DD01000EACB44 /* AbilityDetails */,
 				257D284127048643004C8591 /* HeroDetails */,
 				257D283D27047EDF004C8591 /* Home */,
 				25C93A4B27034C1600985229 /* HerosList */,
@@ -193,6 +196,14 @@
 				258EC6F4264064C000AD0024 /* Theme.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		25B2DC48270DD01000EACB44 /* AbilityDetails */ = {
+			isa = PBXGroup;
+			children = (
+				25B2DC49270DD02300EACB44 /* AbilityDetailsView.swift */,
+			);
+			path = AbilityDetails;
 			sourceTree = "<group>";
 		};
 		25BD863C26793BD600872CD6 /* Packages */ = {
@@ -447,6 +458,7 @@
 				257A6C3A2693A4CB007A80A9 /* MatchesList.swift in Sources */,
 				25C93A4F27034C9D00985229 /* HeroesGridView.swift in Sources */,
 				257D2843270486A3004C8591 /* HeroDetailsView.swift in Sources */,
+				25B2DC4A270DD02300EACB44 /* AbilityDetailsView.swift in Sources */,
 				258EC6ED26405DD800AD0024 /* AsyncImage.swift in Sources */,
 				2518F23F2676AE3D008ABAA7 /* PlayerView.swift in Sources */,
 				258EC6F32640634B00AD0024 /* Colors.swift in Sources */,
