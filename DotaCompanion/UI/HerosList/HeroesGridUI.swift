@@ -56,22 +56,26 @@ enum HeroesGridUI {
   static var feedbacks: Feedback<State, Event, Dependencies> {
     Feedback.combine(
       Feedback.whenInitialized(just: { dependencies in
-        Event.didLoad(dependencies.useCase.getHeroes())
+        Event.didLoad(dependencies.heroList.getHeroes())
       }),
       HeroDetailsUI.feedback.optional()
         .pullback(
           value: \.details,
           event: /Event.details,
           dependency: { dependency in
-            HeroDetailsUI.Dependency(useCase: dependency.recentPerformance)
+            HeroDetailsUI.Dependency(
+              recentPerformance: dependency.recentPerformance,
+              abilities: dependency.abilities
+            )
           }
         )
     )
   }
 
   struct Dependencies {
-    let useCase: HeroesListUseCase
+    let heroList: HeroesListUseCase
     let recentPerformance: RecentPerformanceUseCase
+    let abilities: AbilitiesUseCase
   }
 
   struct State: Equatable {

@@ -32,6 +32,7 @@
 		25B2DC3D270C5F1800EACB44 /* BackedCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 25B2DC3C270C5F1800EACB44 /* BackedCodable */; };
 		25B2DC44270DABA600EACB44 /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B2DC43270DABA600EACB44 /* ImageFetcher.swift */; };
 		25B2DC47270DBD0400EACB44 /* Ability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B2DC46270DBD0400EACB44 /* Ability.swift */; };
+		25B2DC50270E132600EACB44 /* AbilitiesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B2DC4F270E132600EACB44 /* AbilitiesUseCase.swift */; };
 		25C93A532703571A00985229 /* HeroesListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C93A522703571A00985229 /* HeroesListUseCase.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		259F1137268291E6006E7B1C /* ItemsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsRepositoryTests.swift; sourceTree = "<group>"; };
 		25B2DC43270DABA600EACB44 /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		25B2DC46270DBD0400EACB44 /* Ability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ability.swift; sourceTree = "<group>"; };
+		25B2DC4F270E132600EACB44 /* AbilitiesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitiesUseCase.swift; sourceTree = "<group>"; };
 		25C93A522703571A00985229 /* HeroesListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesListUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				25B2DC46270DBD0400EACB44 /* Ability.swift */,
+				25B2DC4F270E132600EACB44 /* AbilitiesUseCase.swift */,
 			);
 			path = Ability;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				252C575426828E6100B0C6D3 /* ItemsRepository.swift in Sources */,
 				25B2DC44270DABA600EACB44 /* ImageFetcher.swift in Sources */,
 				2518F22F26767D13008ABAA7 /* ENV.swift in Sources */,
+				25B2DC50270E132600EACB44 /* AbilitiesUseCase.swift in Sources */,
 				254B4DF12676768400653BB8 /* RecentPerformance.swift in Sources */,
 				252C575026828C0D00B0C6D3 /* Item.swift in Sources */,
 				25C93A532703571A00985229 /* HeroesListUseCase.swift in Sources */,

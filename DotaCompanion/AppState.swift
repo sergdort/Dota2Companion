@@ -19,10 +19,11 @@ enum AppEvent {
 
 struct AppDependency {
   let playerRepository = PlayerRepository()
-  let recentPerformanceRepository = RecentPerformanceUseCase()
+  let recentPerformance = RecentPerformanceUseCase()
   let winsStatsRepository = WinsStatsRepository()
   let matchesUseCase = MatchesUseCase()
   let heroesListUseCase = HeroesListUseCase()
+  let abilities = AbilitiesUseCase()
 }
 
 let appReducer = Reducer<AppState, AppEvent>.combine(
@@ -55,7 +56,7 @@ let appFeedbacks = Feedback<AppState, AppEvent, AppDependency>.combine(
     value: \AppState.recentPerformance,
     event: /AppEvent.recentPerformance,
     dependency: {
-      RecentPerformanceUI.Dependency(repository: $0.recentPerformanceRepository)
+      RecentPerformanceUI.Dependency(repository: $0.recentPerformance)
     }
   ),
   MatchesUI.feedbacks.pullback(
@@ -71,8 +72,9 @@ let appFeedbacks = Feedback<AppState, AppEvent, AppDependency>.combine(
       event: /AppEvent.heroes,
       dependency: {
         HeroesGridUI.Dependencies(
-          useCase: $0.heroesListUseCase,
-          recentPerformance: $0.recentPerformanceRepository
+          heroList: $0.heroesListUseCase,
+          recentPerformance: $0.recentPerformance,
+          abilities: $0.abilities
         )
       }
     )

@@ -2,9 +2,6 @@ import SwiftUI
 import DotaDomain
 
 struct AbilityDetailsView: View {
-  @Environment(\.imageFetcher)
-  private var imageFetcher: ImageFetcher
-
   let ability: Ability
 
   private var formattedDescription: String {

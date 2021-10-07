@@ -3,7 +3,7 @@ import UIKit
 import DotaCore
 import AVFoundation
 
-public struct Ability: Codable {
+public struct Ability: Codable, Equatable {
   public var id: Int
   public var name, nameLOC, descLOC, loreLOC: String
   public var notesLOC: [String]
@@ -14,7 +14,7 @@ public struct Ability: Codable {
   public var immunity, dispellable, maxLevel: Int
   public var castRanges: [Int]
   public var castPoints: [Double]
-  public var channelTimes, cooldowns, durations, damages: [Int]
+  public var channelTimes, cooldowns, durations, damages: [Double]
   public var manaCosts: [Int]
   public var specialValues: [SpecialValue]
   public var isItem, abilityHasScepter, abilityHasShard, abilityIsGrantedByScepter: Bool
@@ -42,10 +42,10 @@ public struct Ability: Codable {
     maxLevel: Int,
     castRanges: [Int],
     castPoints: [Double],
-    channelTimes: [Int],
-    cooldowns: [Int],
-    durations: [Int],
-    damages: [Int],
+    channelTimes: [Double],
+    cooldowns: [Double],
+    durations: [Double],
+    damages: [Double],
     manaCosts: [Int],
     specialValues: [SpecialValue],
     isItem: Bool,
@@ -153,11 +153,12 @@ public extension Ability {
     .ignoreError()
   }
 
-  func videoAsset() -> AVAsset {
-    AVURLAsset(
-      url: URL(
-        string: ENV.prod.dota2CDN.absoluteString + "/videos/dota_react/abilities/" + name + ".mp4"
-      )!
+  func videoAsset(hero: Hero) -> AVAsset {
+    let url: URL = URL(
+      string: ENV.prod.dota2CDN.absoluteString + "/videos/dota_react/abilities/\(hero.name.replacingOccurrences(of: "npc_dota_hero_", with: ""))/" + name + ".mp4"
+    )!
+    return AVURLAsset(
+      url: url
     )
   }
 }
@@ -165,9 +166,9 @@ public extension Ability {
 #if DEBUG
 
 public extension Ability {
-  static func fixture() -> Ability {
+  static func fixture(id: Int = 0) -> Ability {
     Ability(
-      id: 0,
+      id: id,
       name: "batrider_sticky_napalm",
       nameLOC: "Sticky Napalm",
       descLOC: "Drenches an area in sticky oil, amplifying damage from Batrider's attacks and abilities and slowing the movement speed and turn rate of enemies in the area.  Additional casts of Sticky Napalm continue to increase damage, up to %max_stacks% stacks.",
@@ -316,7 +317,7 @@ public extension Ability {
 
 #endif
 
-public struct SpecialValue: Codable {
+public struct SpecialValue: Codable, Equatable {
   public var name: String
   public var valuesFloat: [Double]
   public var valuesInt: [Int]

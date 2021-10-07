@@ -19,6 +19,21 @@ enum HeroDetailsUI {
               assists: context.recentPerformance.assists
             )
             .redacted(reason: context.isLoading ? .placeholder : [])
+            if let selectedAbility = context.selectedAbility, context.abilities.isNotEmpty {
+              AbilitiesView(
+                abilities: context.abilities,
+                selectedAbility: Binding(
+                  get: {
+                    selectedAbility
+                  },
+                  set: { ability in
+                    context.send(event: .didSelectAbility(ability))
+                  }
+                )
+              )
+              VideoView(asset: selectedAbility.videoAsset(hero: context.hero))
+                .aspectRatio(CGSize(width: 814, height: 458), contentMode: .fill)
+            }
           }
           .padding(.horizontal)
         }
@@ -34,9 +49,13 @@ enum HeroDetailsUI {
       case .didFail(let error):
         print("💀 Error:", error)
         state.isLoading = false
-      case .didLoadRecentPerformance(let performance):
+      case .didLoad(let performance, let abilities):
         state.recentPerformance = performance
+        state.abilities = abilities
+        state.selectedAbility = abilities[0]
         state.isLoading = false
+      case .didSelectAbility(let ability):
+        state.selectedAbility = ability
       }
     }
   }
@@ -45,8 +64,10 @@ enum HeroDetailsUI {
     .combine(
       .predicate(predicate: \.isLoading, effect: { state, dependency in
         do {
-          return Event.didLoadRecentPerformance(
-            try await dependency.useCase.fetchRecentPerformance(for: state.hero)
+          async let performance = dependency.recentPerformance.fetchRecentPerformance(for: state.hero)
+          async let abilities = dependency.abilities.abilities(for: state.hero.id)
+          return Event.didLoad(
+            try await performance, try await abilities
           )
         } catch {
           return Event.didFail(error)
@@ -56,17 +77,21 @@ enum HeroDetailsUI {
   }
 
   struct Dependency {
-    var useCase: RecentPerformanceUseCase
+    var recentPerformance: RecentPerformanceUseCase
+    var abilities: AbilitiesUseCase
   }
 
   struct State: Equatable {
     var hero: Hero
     var recentPerformance: RecentPerformance = .empty
     var isLoading = true
+    var abilities: [Ability] = []
+    var selectedAbility: Ability?
   }
 
   enum Event {
-    case didLoadRecentPerformance(RecentPerformance)
+    case didLoad(RecentPerformance, [Ability])
     case didFail(Error)
+    case didSelectAbility(Ability)
   }
 }
