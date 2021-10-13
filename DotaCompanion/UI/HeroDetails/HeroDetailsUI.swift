@@ -8,7 +8,7 @@ enum HeroDetailsUI {
     let store: Store<State, Event>
 
     var body: some View {
-      WithViewContext(store: store) { context in
+      WithContextView(store: store) { context in
         ScrollView {
           VStack {
             HeroDetailsView(hero: context.hero)

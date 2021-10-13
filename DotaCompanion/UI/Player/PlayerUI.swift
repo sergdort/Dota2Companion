@@ -11,7 +11,7 @@ enum PlayerUI {
     let store: Store<PlayerUI.State, PlayerUI.Event>
 
     public var body: some View {
-      WithViewContext(store: store) { context in
+      WithContextView(store: store) { context in
         PlayerView(
           image: (
             imageFetcher.image(for: context.player.profile.avatarmedium)

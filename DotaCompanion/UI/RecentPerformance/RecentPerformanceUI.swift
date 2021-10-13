@@ -9,7 +9,7 @@ enum RecentPerformanceUI {
     let store: Store<State, Event>
 
     var body: some View {
-      WithViewContext(store: store) { context in
+      WithContextView(store: store) { context in
         RecentPerformanceView(
           winRate: context.recentPerformance.winRate,
           kills: context.recentPerformance.kills,

@@ -10,7 +10,6 @@ extension Feedback {
           .flatMap { _ in
             source(dependency).enqueue(to: output)
           }
-          .start()
       }
   }
 
@@ -22,7 +21,6 @@ extension Feedback {
           .flatMap { _ in
             Just(just(dependency)).enqueue(to: output)
           }
-          .start()
       }
   }
 
@@ -36,7 +34,6 @@ extension Feedback {
               .compactMap { $0 }
               .enqueue(to: output)
           }
-          .start()
       }
   }
 }

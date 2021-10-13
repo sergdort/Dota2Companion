@@ -7,7 +7,7 @@ enum MatchesUI {
     let store: Store<State, Event>
 
     var body: some View {
-      WithViewContext(store: store) { context in
+      WithContextView(store: store) { context in
         MatchesList(data: context.matches)
       }
     }

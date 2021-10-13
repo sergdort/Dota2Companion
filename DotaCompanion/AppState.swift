@@ -28,22 +28,22 @@ struct AppDependency {
 
 let appReducer = Reducer<AppState, AppEvent>.combine(
   PlayerUI.reducer.pullback(
-    value: \AppState.playerState,
+    state: \AppState.playerState,
     event: /AppEvent.player
   ),
   RecentPerformanceUI.reducer.pullback(
-    value: \AppState.recentPerformance,
+    state: \AppState.recentPerformance,
     event: /AppEvent.recentPerformance
   ),
   Reducer(reduce: MatchesUI.reducer)
-    .pullback(value: \AppState.matchesState, event: /AppEvent.matches),
+    .pullback(state: \AppState.matchesState, event: /AppEvent.matches),
   HeroesGridUI.reducer
-    .pullback(value: \AppState.heroes, event: /AppEvent.heroes)
+    .pullback(state: \AppState.heroes, event: /AppEvent.heroes)
 )
 
 let appFeedbacks = Feedback<AppState, AppEvent, AppDependency>.combine(
   PlayerUI.feedbacks.pullback(
-    value: \AppState.playerState,
+    state: \AppState.playerState,
     event: /AppEvent.player,
     dependency: {
       PlayerUI.Dependency(
@@ -53,14 +53,14 @@ let appFeedbacks = Feedback<AppState, AppEvent, AppDependency>.combine(
     }
   ),
   RecentPerformanceUI.feedbacks.pullback(
-    value: \AppState.recentPerformance,
+    state: \AppState.recentPerformance,
     event: /AppEvent.recentPerformance,
     dependency: {
       RecentPerformanceUI.Dependency(repository: $0.recentPerformance)
     }
   ),
   MatchesUI.feedbacks.pullback(
-    value: \AppState.matchesState,
+    state: \AppState.matchesState,
     event: /AppEvent.matches,
     dependency: {
       MatchesUI.Dependencies(useCase: $0.matchesUseCase)
@@ -68,7 +68,7 @@ let appFeedbacks = Feedback<AppState, AppEvent, AppDependency>.combine(
   ),
   HeroesGridUI.feedbacks
     .pullback(
-      value: \AppState.heroes,
+      state: \AppState.heroes,
       event: /AppEvent.heroes,
       dependency: {
         HeroesGridUI.Dependencies(

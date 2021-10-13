@@ -46,7 +46,7 @@ struct HeroesGridView_Previews: PreviewProvider {
         .fixture(id: 3),
         .fixture(id: 5)
       ],
-      onSelect: { _ in EmptyView() }
+      onSelect: { _ in }
     )
   }
 }
