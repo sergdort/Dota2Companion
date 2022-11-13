@@ -19,6 +19,4 @@ I try to follow [Clean Architecture](https://github.com/sergdort/CleanArchitectu
 
 ### Hero Details
 
-<img src="Resources/hero_details.mp4" alt="drawing" width="320"/>
-
-![](Resource/hero_details.mp4)
+![](Resources/hero_details.gif)
