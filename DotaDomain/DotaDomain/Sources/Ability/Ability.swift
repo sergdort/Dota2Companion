@@ -225,8 +225,7 @@ public extension Ability {
       specialValues: [
         SpecialValue(
           name: "damage",
-          valuesFloat: [],
-          valuesInt: [
+          valuesFloat: [
             7,
             14,
             21,
@@ -237,8 +236,7 @@ public extension Ability {
         ),
         SpecialValue(
           name: "radius",
-          valuesFloat: [],
-          valuesInt: [
+          valuesFloat: [
             375,
             400,
             425,
@@ -250,14 +248,12 @@ public extension Ability {
         SpecialValue(
           name: "duration",
           valuesFloat: [7],
-          valuesInt: [],
           isPercentage: false,
           headingLOC: "DURATION:"
         ),
         SpecialValue(
           name: "movement_speed_pct",
-          valuesFloat: [],
-          valuesInt: [
+          valuesFloat: [
             -2,
              -4,
              -6,
@@ -268,8 +264,7 @@ public extension Ability {
         ),
         SpecialValue(
           name: "turn_rate_pct",
-          valuesFloat: [],
-          valuesInt: [
+          valuesFloat: [
             -10,
              -30,
              -50,
@@ -280,8 +275,7 @@ public extension Ability {
         ),
         SpecialValue(
           name: "max_stacks",
-          valuesFloat: [],
-          valuesInt: [
+          valuesFloat: [
             10
           ],
           isPercentage: false,
@@ -289,8 +283,7 @@ public extension Ability {
         ),
         SpecialValue(
           name: "AbilityCastRange",
-          valuesFloat: [],
-          valuesInt: [
+          valuesFloat: [
             550,
             600,
             650,
@@ -320,20 +313,20 @@ public extension Ability {
 public struct SpecialValue: Codable, Equatable {
   public var name: String
   public var valuesFloat: [Double]
-  public var valuesInt: [Int]
+//  public var valuesInt: [Int]
   public var isPercentage: Bool
   public var headingLOC: String
   
   public init(
     name: String,
     valuesFloat: [Double],
-    valuesInt: [Int],
+//    valuesInt: [Int],
     isPercentage: Bool,
     headingLOC: String
   ) {
     self.name = name
     self.valuesFloat = valuesFloat
-    self.valuesInt = valuesInt
+//    self.valuesInt = valuesInt
     self.isPercentage = isPercentage
     self.headingLOC = headingLOC
   }
@@ -341,7 +334,7 @@ public struct SpecialValue: Codable, Equatable {
   enum CodingKeys: String, CodingKey {
     case name
     case valuesFloat = "values_float"
-    case valuesInt = "values_int"
+//    case valuesInt = "values_int"
     case isPercentage = "is_percentage"
     case headingLOC = "heading_loc"
   }

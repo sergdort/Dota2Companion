@@ -48,20 +48,16 @@ struct AbilityValuesView: View {
     HStack {
       Text(value.headingLOC)
         .foregroundColor(Colors.textSecondary.color)
-      if value.valuesInt.isNotEmpty {
+      if value.valuesFloat.isNotEmpty {
         Text(
-          value.valuesInt.map {
-            "\($0)" + (value.isPercentage ? "% " : " ")
-          }.joined(separator: "/ ")
+          value.formattedValues
         )
         .font(.body)
         .foregroundColor(Colors.textMain.color)
       }
       if value.valuesFloat.isNotEmpty {
         Text(
-          value.valuesFloat.map {
-            "\($0) " + (value.isPercentage ? "% " : " ")
-          }.joined(separator: "/ ")
+          value.formattedValues
         )
         .font(.body)
         .foregroundColor(Colors.textMain.color)
@@ -72,11 +68,6 @@ struct AbilityValuesView: View {
 
 extension SpecialValue {
   var formattedValues: String {
-    if valuesInt.isNotEmpty {
-      return valuesInt.map {
-        "\($0)" + (isPercentage ? "% " : " ")
-      }.joined(separator: "/ ")
-    }
     if valuesFloat.isNotEmpty {
       return valuesFloat.map {
         "\($0)" + (isPercentage ? "% " : " ")

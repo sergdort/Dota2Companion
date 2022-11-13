@@ -1,7 +1,7 @@
 import Combine
 import Foundation
 
-// https://api.opendota.com/api/players/118113925
+// https://api.opendota.com/api/players/86725175
 public struct Player: Equatable, Codable {
   public var rankTier: Int
   public var leaderboardRank: Int?

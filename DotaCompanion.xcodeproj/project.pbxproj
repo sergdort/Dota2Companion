@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250FDECB292125400031873B /* CombineFeedback in Frameworks */ = {isa = PBXBuildFile; productRef = 250FDECA292125400031873B /* CombineFeedback */; };
 		2518F22826767CB0008ABAA7 /* DotaDomain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2518F22726767CB0008ABAA7 /* DotaDomain.framework */; };
 		2518F22926767CB0008ABAA7 /* DotaDomain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2518F22726767CB0008ABAA7 /* DotaDomain.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2518F22C26767CBD008ABAA7 /* DotaCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2518F22B26767CBD008ABAA7 /* DotaCore.framework */; };
@@ -26,7 +27,6 @@
 		25AE077F270F49B400FF03EC /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AE077E270F49B400FF03EC /* VideoView.swift */; };
 		25B2DC4A270DD02300EACB44 /* AbilityDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B2DC49270DD02300EACB44 /* AbilityDetailsView.swift */; };
 		25B2DC4D270E0DCD00EACB44 /* AbilitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B2DC4C270E0DCD00EACB44 /* AbilitiesView.swift */; };
-		25BD864826794B7300872CD6 /* CombineFeedback in Frameworks */ = {isa = PBXBuildFile; productRef = 25BD864726794B7300872CD6 /* CombineFeedback */; };
 		25C7EF27267BC197008803AB /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C7EF26267BC197008803AB /* AppState.swift */; };
 		25C7EF29267BD0B9008803AB /* Feedback+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C7EF28267BD0B9008803AB /* Feedback+Ext.swift */; };
 		25C93A4D27034C2E00985229 /* HeroGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C93A4C27034C2E00985229 /* HeroGridItem.swift */; };
@@ -93,7 +93,6 @@
 		25AE077E270F49B400FF03EC /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		25B2DC49270DD02300EACB44 /* AbilityDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityDetailsView.swift; sourceTree = "<group>"; };
 		25B2DC4C270E0DCD00EACB44 /* AbilitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitiesView.swift; sourceTree = "<group>"; };
-		25BD863D26793BD600872CD6 /* CombineFeedback */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CombineFeedback; path = ../CombineFeedback; sourceTree = "<group>"; };
 		25C7EF26267BC197008803AB /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		25C7EF28267BD0B9008803AB /* Feedback+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Feedback+Ext.swift"; sourceTree = "<group>"; };
 		25C93A4C27034C2E00985229 /* HeroGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroGridItem.swift; sourceTree = "<group>"; };
@@ -122,7 +121,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2518F22826767CB0008ABAA7 /* DotaDomain.framework in Frameworks */,
-				25BD864826794B7300872CD6 /* CombineFeedback in Frameworks */,
+				250FDECB292125400031873B /* CombineFeedback in Frameworks */,
 				2518F22C26767CBD008ABAA7 /* DotaCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,14 +219,6 @@
 			path = Ability;
 			sourceTree = "<group>";
 		};
-		25BD863C26793BD600872CD6 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				25BD863D26793BD600872CD6 /* CombineFeedback */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		25C7EF2A267BDCDA008803AB /* Player */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,7 +250,6 @@
 		25F86E6A263FFA3800546CB2 = {
 			isa = PBXGroup;
 			children = (
-				25BD863C26793BD600872CD6 /* Packages */,
 				25F86E75263FFA3800546CB2 /* DotaCompanion */,
 				25F86E8C263FFA3A00546CB2 /* DotaCompanionTests */,
 				25F86E97263FFA3A00546CB2 /* DotaCompanionUITests */,
@@ -350,7 +340,7 @@
 			);
 			name = DotaCompanion;
 			packageProductDependencies = (
-				25BD864726794B7300872CD6 /* CombineFeedback */,
+				250FDECA292125400031873B /* CombineFeedback */,
 			);
 			productName = DotaCompanion;
 			productReference = 25F86E73263FFA3800546CB2 /* DotaCompanion.app */;
@@ -424,6 +414,7 @@
 			);
 			mainGroup = 25F86E6A263FFA3800546CB2;
 			packageReferences = (
+				250FDEC9292125400031873B /* XCRemoteSwiftPackageReference "CombineFeedback" */,
 			);
 			productRefGroup = 25F86E74263FFA3800546CB2 /* Products */;
 			projectDirPath = "";
@@ -817,9 +808,21 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		250FDEC9292125400031873B /* XCRemoteSwiftPackageReference "CombineFeedback" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sergdort/CombineFeedback";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		25BD864726794B7300872CD6 /* CombineFeedback */ = {
+		250FDECA292125400031873B /* CombineFeedback */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 250FDEC9292125400031873B /* XCRemoteSwiftPackageReference "CombineFeedback" */;
 			productName = CombineFeedback;
 		};
 /* End XCSwiftPackageProductDependency section */
